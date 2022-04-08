@@ -1,3 +1,6 @@
+from helper import *
+
+
 def cariGameDimiliki():
     # Spesifikasi
     # ...
@@ -44,3 +47,6 @@ def lihatRiwayat():
     # ALGORITMA
     # ...
     pass
+
+
+print(potongDataCSV('kepemilikan.csv'))
