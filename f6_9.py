@@ -1,3 +1,8 @@
+import helper as hp
+
+global gameToko
+gameToko = hp.potongDataCSV("game.csv")
+
 def ubahStok ():
     # Fungsi mengubah stok game. Inputan ID GAME dan jumlah.
     # Lalu memberi pesan yang berisi informasi pengurangan atau penjumlahan
@@ -7,9 +12,44 @@ def ubahStok ():
     # KAMUS LOKAL
 
     # ALGORITMA
-    ...
+    gameId = input("Masukkan ID game: ")
+
+    i = 0
+    ketemu = False
+    while (ketemu == False) and (i < hp.panjang(gameToko)):
+        if (gameId != gameToko[i][0]):
+            i += 1
+        elif (gameId == gameToko[i][0]):
+            ketemu = True
+
+    # while (gameId != gameToko[i][0]) and ((ketemu != True) or (i < hp.panjang(gameToko) - 1)):
+    #     i += 1
+    # else:       # ketemu
+    #     i = i
+    #     ketemu = True
+    
+    if (ketemu == False):
+        print("Tidak ada game dengan ID tersebut!")
+    elif (ketemu == True):
+        nama = gameToko[i][1]
+        ubahStok = int(input("Masukkan jumlah: "))
+        if (ubahStok < 0):
+            if (int(gameToko[i][5]) >= (ubahStok * (-1))):
+                gameToko[i][5] = int(gameToko[i][5]) + ubahStok
+                print(f"Stok game {nama} berhasil dikurangi. Stok sekarang: {gameToko[i][5]}")
+            else:
+                print(f"Stok game {nama} gagal dikurangi karena stok kurang. Stok sekarang: {gameToko[i][5]} (< {ubahStok*(-1)})")
+        elif (ubahStok > 0):
+            gameToko[i][5] = int(gameToko[i][5]) + ubahStok
+            print(f"Stok game {nama} berhasil ditambahkan. Stok sekarang: {gameToko[i][5]}")
+        else:
+            print(f"Stok game {nama} tetap. Stok sekarang: {gameToko[i][5]}")
+    
+    hp.overwrite("game.csv", gameToko)
+        
 
 
+ 
 def listGameToko ():
     # Fungsi menampilkan list game di toko berdasarkan keyword pengguna. 
     # Secara default diurutkan berdasar pada ID GAME dari terkecil ke terbesar. 
@@ -50,4 +90,4 @@ def listGame ():
     # ALGORITMA
     ...
 
-
+ubahStok()

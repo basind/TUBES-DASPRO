@@ -66,3 +66,17 @@ def panjangMaksKolomTabel(data):
         panjang_maksimum_kolom = tambahArray(
             panjang_maksimum_kolom, [maks_temp])
     return panjang_maksimum_kolom
+
+
+def overwrite (nama_file, matriks):
+    with open(nama_file, 'w+') as data:
+        for i in range(panjang(matriks)):
+            line = ""
+            for j in range(panjang(matriks[i]) - 1):
+                line += str(matriks[i][j]) + ";"
+            if (i == (panjang(matriks) - 1)):
+                line += str(matriks[i][5])
+            else:
+                line += str(matriks[i][5]) + "\n"
+            data.write(line)
+                
