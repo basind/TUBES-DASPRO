@@ -47,3 +47,22 @@ def potongDataCSV(nama_file):
         temp = tambahArray(temp, [s])
         arrofarr = tambahArray(arrofarr, [temp])
     return arrofarr
+
+
+def panjangMaksKolomTabel(data):
+    # Spesifikasi
+    # ...
+
+    # KAMUS LOKAL
+    # ...
+
+    # ALGORITMA
+    panjang_maksimum_kolom = []
+    for i in range(panjang(data[0])):
+        maks_temp = 0
+        for j in range(panjang(data)):
+            if panjang(data[j][i]) > maks_temp:
+                maks_temp = panjang(data[j][i])
+        panjang_maksimum_kolom = tambahArray(
+            panjang_maksimum_kolom, [maks_temp])
+    return panjang_maksimum_kolom
