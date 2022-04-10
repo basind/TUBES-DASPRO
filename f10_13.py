@@ -175,15 +175,15 @@ def topUp(data_user):
             if saldo >= 0:
                 data_user[current_user_index][5] += saldo
                 print(
-                    f'Top up berhasil. Saldo {username} bertambah menjadi Rp{formatSalodOutput(data_user[current_user_index][5])}')
+                    f'Top up berhasil. Saldo {username} bertambah menjadi Rp{formatSaldoOutput(data_user[current_user_index][5])}')
             else:
                 if data_user[current_user_index][5] + saldo < 0:
                     print(
-                        f'Masukan tidak valid. Anda tidak dapat mengurangi saldo sebesar Rp{formatSalodOutput(saldo)}')
+                        f'Masukan tidak valid. Anda tidak dapat mengurangi saldo sebesar Rp{formatSaldoOutput(saldo)}')
                 else:
                     data_user[current_user_index][5] += saldo
                     print(
-                        f'Top up berhasil. Saldo {username} berkurang menjadi Rp{formatSalodOutput(data_user[current_user_index][5])}')
+                        f'Top up berhasil. Saldo {username} berkurang menjadi Rp{formatSaldoOutput(data_user[current_user_index][5])}')
         else:
             print('Maaf, saldo yang anda masukkan tidak valid.')
 

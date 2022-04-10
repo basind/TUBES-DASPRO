@@ -137,7 +137,7 @@ def formatSaldoInput(saldo):
     return temp
 
 
-def formatSalodOutput(saldo_init):
+def formatSaldoOutput(saldo_init):
     # Spesifikasi
     # ...
 
