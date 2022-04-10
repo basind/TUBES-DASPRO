@@ -138,7 +138,7 @@ def cariGameToko(data_game):
                     f"{item[0] :<{panjang_maks_kolom[0]}} | {item[1] :<{panjang_maks_kolom[1]}} | {item[2] :<{panjang_maks_kolom[2]}} | {item[3] :<{panjang_maks_kolom[3]}} | {item[4] :<{panjang_maks_kolom[4]}} | {item[5] :<{panjang_maks_kolom[5]}}")
 
 
-def topUp():
+def topUp(data_user):
     # Spesifikasi
     # ...
 
@@ -146,8 +146,48 @@ def topUp():
     # ...
 
     # ALGORITMA
-    # ...
-    pass
+
+    # input
+    print('Masukkan username: ', end='')
+    username = input()
+    print('Contoh format saldo yang valid:')
+    print('Rp10.000, Rp10.500, Rp1.000.000, Rp1000, Rp10500')
+    print('Masukkan saldo: Rp', end='')
+    saldo = input()
+
+    # validasi user
+    is_valid = False
+    current_user_index = 0
+    for i in range(1, panjang(data_user)):
+        if data_user[i][1] == username:
+            current_user_index = i
+            is_valid = True
+            break
+
+    if not is_valid:
+        print(f'Username "{username}" tidak ditemukan.')
+    else:
+        # validasi saldo
+        if validasiSaldo(saldo):
+            saldo = int(formatSaldoInput(saldo))
+            data_user[current_user_index][5] = int(
+                data_user[current_user_index][5])
+            if saldo >= 0:
+                data_user[current_user_index][5] += saldo
+                print(
+                    f'Top up berhasil. Saldo {username} bertambah menjadi Rp{formatSalodOutput(data_user[current_user_index][5])}')
+            else:
+                if data_user[current_user_index][5] + saldo < 0:
+                    print(
+                        f'Masukan tidak valid. Anda tidak dapat mengurangi saldo sebesar Rp{formatSalodOutput(saldo)}')
+                else:
+                    data_user[current_user_index][5] += saldo
+                    print(
+                        f'Top up berhasil. Saldo {username} berkurang menjadi Rp{formatSalodOutput(data_user[current_user_index][5])}')
+        else:
+            print('Maaf, saldo yang anda masukkan tidak valid.')
+
+    return data_user
 
 
 def lihatRiwayat():

@@ -1,3 +1,6 @@
+from tkinter import E
+
+
 def panjang(item):
     # Helper panjang untuk mengecek panjang suatu item (list, string, dsb)
 
@@ -68,7 +71,7 @@ def panjangMaksKolomTabel(data):
     return panjang_maksimum_kolom
 
 
-def overwrite (nama_file, matriks):
+def overwrite(nama_file, matriks):
     with open(nama_file, 'w+') as data:
         for i in range(panjang(matriks)):
             line = ""
@@ -79,4 +82,86 @@ def overwrite (nama_file, matriks):
             else:
                 line += str(matriks[i][5]) + "\n"
             data.write(line)
-                
+
+
+def validasiSaldo(saldo):
+    # Spesifikasi
+    # ...
+
+    # KAMUS LOKAL
+    # ...
+
+    # ALGORITMA
+    if panjang(saldo) == 0:
+        return False
+    else:
+        temp = ''
+        count = 0
+        meet_titik = False
+        for item in saldo:
+            if item == '-':
+                continue
+            elif not meet_titik and item != '.':
+                temp += item
+            elif item != '.':
+                count -= 1
+                temp += item
+            else:
+                meet_titik = True
+                if count != 0:
+                    return False
+                else:
+                    count = 3
+                    continue
+        try:
+            temp = int(temp)
+            return True
+        except:
+            return False
+
+
+def formatSaldoInput(saldo):
+    # Spesifikasi
+    # ...
+
+    # KAMUS LOKAL
+    # ...
+
+    # ALGORITMA
+    temp = ''
+    for item in saldo:
+        if item == '.':
+            continue
+        else:
+            temp += item
+    return temp
+
+
+def formatSalodOutput(saldo_init):
+    # Spesifikasi
+    # ...
+
+    # KAMUS LOKAL
+    # ...
+
+    # ALGORITMA
+    saldo = ''
+    for item in str(saldo_init):
+        if item == '-':
+            continue
+        else:
+            saldo += item
+    panjang_saldo = panjang(saldo)
+    count = 3 - (panjang_saldo % 3)
+    temp = ''
+    for i in range(panjang_saldo):
+        if count == 3:
+            if i == 0:
+                temp += saldo[i]
+            else:
+                temp += '.' + saldo[i]
+            count = 1
+        else:
+            temp += saldo[i]
+            count += 1
+    return temp

@@ -22,6 +22,9 @@ current_user_id = '1'
 # print(data_kepemilikan)
 # print('--------------')
 # print(data_riwayat)
+
 # cariGameDimiliki(current_user_id, data_game, data_kepemilikan)
 
-cariGameToko(data_game)
+# cariGameToko(data_game)
+
+data_user = topUp(data_user)
