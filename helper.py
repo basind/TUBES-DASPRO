@@ -103,16 +103,21 @@ def validasiSaldo(saldo):
                 continue
             elif not meet_titik and item != '.':
                 temp += item
+                count += 1
             elif item != '.':
                 count -= 1
                 temp += item
             else:
-                meet_titik = True
-                if count != 0:
+                if not meet_titik and count > 3:
+                    return False
+                elif meet_titik and count != 0:
                     return False
                 else:
                     count = 3
+                    meet_titik = True
                     continue
+        if count != 0:
+            return False
         try:
             temp = int(temp)
             return True
