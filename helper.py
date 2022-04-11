@@ -116,7 +116,7 @@ def validasiSaldo(saldo):
                     count = 3
                     meet_titik = True
                     continue
-        if count != 0:
+        if count != 0 and meet_titik:
             return False
         try:
             temp = int(temp)
