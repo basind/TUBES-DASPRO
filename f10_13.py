@@ -45,6 +45,9 @@ def cariGameDimiliki(user_id, data_game, data_kepemilikan):
             if renew_data_game[i][0] == game_id and renew_data_game[i][3] == tahun:
                 daftar_game = tambahArray(daftar_game, [renew_data_game[i]])
 
+    for i in range(1, panjang(daftar_game)):
+        daftar_game[i][4] = 'Rp' + formatSaldoOutput(daftar_game[i][4])
+
     # cetak game yang dimiliki
     print('Daftar game pada inventory yang memenuhi kriteria:')
     if panjang(daftar_game) == 1:
@@ -124,6 +127,9 @@ def cariGameToko(data_game):
     daftar_game = tambahArray(
         [['ID', 'Nama', 'Kategori', 'Tahun Rilis', 'Harga', 'Stok']], daftar_game)
 
+    for i in range(1, panjang(daftar_game)):
+        daftar_game[i][4] = 'Rp' + formatSaldoOutput(daftar_game[i][4])
+
     # Cetak game yang dimiliki
     print('Daftar game pada toko yang memenuhi kriteria:')
     if panjang(daftar_game) == 1:
@@ -183,14 +189,14 @@ def topUp(data_user):
                 else:
                     data_user[current_user_index][5] += saldo
                     print(
-                        f'Top up berhasil. Saldo {username} berkurang menjadi Rp{formatSaldoOutput(data_user[current_user_index][5])}')
+                        f'Top down berhasil. Saldo {username} berkurang menjadi Rp{formatSaldoOutput(data_user[current_user_index][5])}')
         else:
             print('Maaf, saldo yang anda masukkan tidak valid.')
 
     return data_user
 
 
-def lihatRiwayat():
+def lihatRiwayat(user_id, data_riwayat):
     # Spesifikasi
     # ...
 
@@ -198,5 +204,25 @@ def lihatRiwayat():
     # ...
 
     # ALGORITMA
-    # ...
-    pass
+
+    # Fetching riwayat user yang bersesuaian
+    user_riwayat = [['ID', 'Nama', 'Harga', 'User ID', 'Tahun Beli']]
+    for i in range(1, panjang(data_riwayat)):
+        if data_riwayat[i][3] == user_id:
+            user_riwayat = tambahArray(user_riwayat, [data_riwayat[i]])
+
+    for i in range(1, panjang(user_riwayat)):
+        user_riwayat[i][2] = 'Rp' + formatSaldoOutput(user_riwayat[i][2])
+
+    # cetak hasil fetching
+    if panjang(user_riwayat) == 1:
+        print('Maaf, kamu tidak ada riwayat pembelian game. Ketik perintah "beli_game" untuk membeli.')
+    else:
+        print('Daftar Game: ')
+        panjang_maks_kolom = panjangMaksKolomTabel(user_riwayat)
+        for item in user_riwayat:
+            if(item[0] == 'ID'):
+                print(f"{item[0] :^{panjang_maks_kolom[0]}}   {item[1] :^{panjang_maks_kolom[1]}}   {item[2] :^{panjang_maks_kolom[2]}}   {item[4] :^{panjang_maks_kolom[4]}}")
+            else:
+                print(
+                    f"{item[0] :<{panjang_maks_kolom[0]}} | {item[1] :<{panjang_maks_kolom[1]}} | {item[2] :<{panjang_maks_kolom[2]}} | {item[4] :<{panjang_maks_kolom[4]}}")

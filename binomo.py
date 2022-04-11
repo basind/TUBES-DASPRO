@@ -28,3 +28,5 @@ current_user_id = '1'
 # cariGameToko(data_game)
 
 data_user = topUp(data_user)
+
+# lihatRiwayat(current_user_id, data_riwayat)
