@@ -2,6 +2,7 @@
 Program utama binomo
 """
 from f10_13 import *
+from b01_chiper import *
 from helper import *
 
 # Fetch data dari database
@@ -27,6 +28,9 @@ current_user_id = '1'
 
 # cariGameToko(data_game)
 
-data_user = topUp(data_user)
+# data_user = topUp(data_user)
 
 # lihatRiwayat(current_user_id, data_riwayat)
+
+chiperDecript(chiperEncript('123_!#@chaos_membuat-dasPrO0!'),
+              'tahusah!')
