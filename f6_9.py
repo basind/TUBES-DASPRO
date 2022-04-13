@@ -3,7 +3,8 @@ import helper as hp
 global gameToko
 gameToko = hp.potongDataCSV("game.csv")
 
-def ubahStok ():
+def ubahStok (gameToko):
+    # ubahStok(gameToko). input berupa matriks
     # Fungsi mengubah stok game. Inputan ID GAME dan jumlah.
     # Lalu memberi pesan yang berisi informasi pengurangan atau penjumlahan
     # game, serta jumlah terkini game tersebut. 
@@ -22,12 +23,6 @@ def ubahStok ():
         elif (gameId == gameToko[i][0]):
             ketemu = True
 
-    # while (gameId != gameToko[i][0]) and ((ketemu != True) or (i < hp.panjang(gameToko) - 1)):
-    #     i += 1
-    # else:       # ketemu
-    #     i = i
-    #     ketemu = True
-    
     if (ketemu == False):
         print("Tidak ada game dengan ID tersebut!")
     elif (ketemu == True):
@@ -44,8 +39,8 @@ def ubahStok ():
             print(f"Stok game {nama} berhasil ditambahkan. Stok sekarang: {gameToko[i][5]}")
         else:
             print(f"Stok game {nama} tetap. Stok sekarang: {gameToko[i][5]}")
-    
-    hp.overwrite("game.csv", gameToko)
+
+    return gameToko
         
 
 
@@ -65,7 +60,7 @@ def listGameToko ():
     ...
 
 
-def beliGame ():
+def beliGame (gameToko,username,user,game, kepemilikan):
     # Prosedur beliGame akan mengurangi stok dari game yang ID nya diinput oleh user, serta
     # user memiliki saldo yang cukup dan belum memiliki game tersebut. 
     # Bila belum dimiliki, namun saldo belum cukup maka akan diberikan pesan saldo tidak cukup. 
@@ -76,7 +71,44 @@ def beliGame ():
     # KAMUS LOKAL
 
     # ALGORTIMA
-    ...
+    # mencari posisi pengguna di data base user.csv
+    barisUser = 0
+    for i in range(hp.panjang(user)):
+        if user[i][1] == username:
+            baris = i 
+    
+    # menerima input game id
+    gameId = (input()).upper()
+
+    # pengecekan game ada atau tidak
+    barisGame = 0
+    isAvail = True
+    for i in range(hp.panjang(game)):
+        if (game[i][0] == gameId): 
+            barisGame = i
+            if (int(game[i][5]) == 0):
+                isAvail = False
+
+    if isAvail == False:
+        print("Stok Game tersebut sedang habis!")
+    else:
+        # pengecekan sudah dimiliki 
+        isOwned = False
+        for i in range(hp.panjang(kepemilikan)):
+            if (kepemilikan[i][0] == gameId) and (kepemilikan[i][1] == user[baris][0]):
+                isOwned = True
+        
+        # pembelian
+        if (isOwned == True):
+            print("Anda sudah memiliki Game tersebut!")
+        else:
+            # pengecekan saldo
+            if (user[baris][5] < game[i][4]):
+                print("Saldo anda tidak cukup untuk membeli Game tersebut!")
+            else:
+                gameToko[barisGame][5] = int(gameToko[barisGame][5]) - 1
+    return gameToko
+
 
 
 def listGame ():
@@ -89,5 +121,3 @@ def listGame ():
 
     # ALGORITMA
     ...
-
-ubahStok()
