@@ -167,3 +167,22 @@ def formatSaldoOutput(saldo_init):
             temp += saldo[i]
             count += 1
     return temp
+
+
+def findGame (gameId, gamDb):
+    # Spesifikasi
+    # Pengecek baris ke berapa dan ketersediaan stok game
+
+    # KAMUS LOKAL
+    # ...
+
+    # ALGORITMA
+    barisGame = 0
+    isAvail = True
+    for i in range(panjang(gamDb)):
+        if (gamDb[i][0] == gameId): 
+            barisGame = i
+            if (int(gamDb[i][5]) == 0):
+                isAvail = False
+    return barisGame, isAvail
+
