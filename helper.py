@@ -1,6 +1,3 @@
-from tkinter import E
-
-
 def panjang(item):
     # Helper panjang untuk mengecek panjang suatu item (list, string, dsb)
 
