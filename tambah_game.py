@@ -1,3 +1,5 @@
+list = [[]]
+
 def tambahgame(list):
     ng = str(input('Masukkan nama game: '))
     ka = str(input('Masukkan kategori: '))
@@ -9,6 +11,8 @@ def tambahgame(list):
         tambahgame()
     else:
         print(f'Selamat! Berhasil menambahkan game {ng}.')
-    list+=[[ng,ka,tr,ha,sa]]
+        list+=[[ng,ka,tr,ha,sa]]
+        print(list)
+        return list
 
 tambahgame(list)
