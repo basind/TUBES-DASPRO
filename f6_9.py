@@ -45,8 +45,8 @@ def ubahStok (gameToko):
 
 
  
-def listGameToko ():
-    # Fungsi menampilkan list game di toko berdasarkan keyword pengguna. 
+def listGameToko (gameToko):
+    # Prosedur menampilkan list game di toko berdasarkan keyword pengguna. 
     # Secara default diurutkan berdasar pada ID GAME dari terkecil ke terbesar. 
     # Menerima inputan sebuah string "<keyword><+/->". 
     # + menandakan diurutkan ascending, 
@@ -57,10 +57,25 @@ def listGameToko ():
     # KAMUS LOKAL
 
     # ALGORITMA
-    ...
+    inputan = input("Skema sorting : ")
+
+    key, skema = hp.sortKey(inputan)
+
+    kolKey = 0
+    for i in range(6):
+        if gameToko[0][i] == key:
+            kolKey = i
+    
+    tmpGameToko = hp.bubbleSortMatriks(gameToko, kolKey, skema)
+
+    for i in range(1, hp.panjang(gameToko)):
+        print(f"{tmpGameToko[i][0]} | {tmpGameToko[i][1]} | {tmpGameToko[i][2]} | {tmpGameToko[i][3]} | {tmpGameToko[i][4]} | {tmpGameToko[i][5]}")
+
+   
+   
 
 
-def beliGame (gameToko,username,user,game, kepemilikan):
+def beliGame (gameToko,username,user, kepemilikan):
     # Prosedur beliGame akan mengurangi stok dari game yang ID nya diinput oleh user, serta
     # user memiliki saldo yang cukup dan belum memiliki game tersebut. 
     # Bila belum dimiliki, namun saldo belum cukup maka akan diberikan pesan saldo tidak cukup. 
@@ -69,6 +84,7 @@ def beliGame (gameToko,username,user,game, kepemilikan):
     # Prosedur ini hanya dapat dilakukan oleh user.
 
     # KAMUS LOKAL
+    # gameToko : matriks game yang akan berubah sepanjang program dijalankan.
 
     # ALGORTIMA
     # mencari posisi pengguna di data base user.csv
@@ -81,13 +97,7 @@ def beliGame (gameToko,username,user,game, kepemilikan):
     gameId = (input()).upper()
 
     # pengecekan game ada atau tidak
-    barisGame = 0
-    isAvail = True
-    for i in range(hp.panjang(game)):
-        if (game[i][0] == gameId): 
-            barisGame = i
-            if (int(game[i][5]) == 0):
-                isAvail = False
+    barisGame, isAvail = hp.findGame(kepemilikan[i][0], gameToko)   
 
     if isAvail == False:
         print("Stok Game tersebut sedang habis!")
@@ -97,21 +107,21 @@ def beliGame (gameToko,username,user,game, kepemilikan):
         for i in range(hp.panjang(kepemilikan)):
             if (kepemilikan[i][0] == gameId) and (kepemilikan[i][1] == user[baris][0]):
                 isOwned = True
-        
+       
         # pembelian
         if (isOwned == True):
             print("Anda sudah memiliki Game tersebut!")
         else:
             # pengecekan saldo
-            if (user[baris][5] < game[i][4]):
+            if (int(user[baris][5]) < int(gameToko[i][4])):
                 print("Saldo anda tidak cukup untuk membeli Game tersebut!")
             else:
-                gameToko[barisGame][5] = int(gameToko[barisGame][5]) - 1
+                gameToko[barisGame][5] = f"{int(gameToko[barisGame][5]) - 1}"
     return gameToko
 
 
 
-def listGame ():
+def listGame (userId, gameToko, kepemilikan):
     # Prosedur menampilkan game yang dimiliki user ascending berdasar game ID.
     # Format : ID | Nama Game | Kategori | Tahun Rilis | Harga.
     # Menampilkan pesan error jika user tidak memiliki game.
@@ -120,4 +130,13 @@ def listGame ():
     # KAMUS LOKAL
 
     # ALGORITMA
-    ...
+    n = hp.panjang(kepemilikan)
+
+    if (n == 0):
+        print("Maaf, kamu belum membeli game. Ketik perintah beli_game untuk beli.")
+    else:
+        print("Daftar game :")
+        for i in range (1,n):
+            if (kepemilikan[i][1] == userId):
+                barisGame, avail = hp.findGame(kepemilikan[i][0], gameToko)    
+                print(f"{i+1}. {kepemilikan[i][0]}  |  {gameToko[barisGame][1]}  |  {gameToko[barisGame][2]}  |  {gameToko[barisGame][3]}   |   {hp.formatSaldoOutput(gameToko[barisGame][4])}")

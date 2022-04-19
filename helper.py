@@ -1,6 +1,3 @@
-from tkinter import E
-
-
 def panjang(item):
     # Helper panjang untuk mengecek panjang suatu item (list, string, dsb)
 
@@ -170,3 +167,51 @@ def formatSaldoOutput(saldo_init):
             temp += saldo[i]
             count += 1
     return temp
+
+
+def findGame (gameId, gamDb):
+    # Spesifikasi
+    # Pengecek baris ke berapa dan ketersediaan stok game
+
+    # KAMUS LOKAL
+    # ...
+
+    # ALGORITMA
+    barisGame = 0
+    isAvail = True
+    for i in range(panjang(gamDb)):
+        if (gamDb[i][0] == gameId): 
+            barisGame = i
+            if (int(gamDb[i][5]) == 0):
+                isAvail = False
+    return barisGame, isAvail
+
+
+def sortKey (masukan):
+    key = ""
+    skema = ""
+
+    for elm in masukan:
+        if (elm == "+") or (elm == "-"):
+            skema += elm
+        else:
+            key += elm
+    
+    return key, skema
+    
+
+def bubbleSortMatriks (matriks, kolomKey, skema):
+    nMatriks = panjang(matriks)
+
+    if (skema == "+"):
+        for i in range(1,nMatriks - 1):
+            for j in range(1, nMatriks-i-1):
+                if (matriks[j][kolomKey] > matriks[j+1][kolomKey]):
+                    matriks[j+1], matriks[j] = matriks[j], matriks[j+1]
+    else:
+        for i in range(1,nMatriks - 1):
+            for j in range(1, nMatriks-i-1):
+                if (matriks[j][kolomKey] < matriks[j+1][kolomKey]):
+                    matriks[j+1], matriks[j] = matriks[j], matriks[j+1]
+   
+    return matriks
