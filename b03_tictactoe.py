@@ -22,14 +22,11 @@ def printTable(table_status):
     print()
 
 # cek apakah ada pemenang
-def isWinner(table_status, first_time):
+def isWinner(table_status):
     # by default ada 3 case kondisi menang:
     # -> Horizontal
     # -> Vertical
     # -> Diagonal
-
-    if first_time:
-        return False
 
     # cek Horizontal
     for i in range(3):
@@ -122,7 +119,7 @@ for i in range(3):
 # loop game
 last_player = 'X'
 first_time = True
-while not isWinner(table_status, first_time):
+while not isWinner(table_status):
     first_time = False
     printTable(table_status)
     print(f'Giliran pemain "{last_player}"')
