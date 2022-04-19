@@ -110,3 +110,4 @@ def chiperDecript(encripted_pass, key):
             if encripted_pass[i] == table_of_chars[index_keystream[i]][j]:
                 decripted_pass += list_of_chars[j]
     print('Hasil dekripsi: ' + decripted_pass)
+    return decripted_pass

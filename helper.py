@@ -1,3 +1,10 @@
+import os
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("nama_folder")
+args = parser.parse_args()
+
 def panjang(item):
     # Helper panjang untuk mengecek panjang suatu item (list, string, dsb)
 
@@ -27,26 +34,27 @@ def potongDataCSV(nama_file):
     # KAMUS LOKAL
 
     # ALGORITMA
-    arr = []
-    arrofarr = []
-    delimiter = ';'
-    with open('database'/nama_file, 'r') as data:
-        for item in data:
-            arr = tambahArray(arr, [item])
-    for item in arr:
-        temp = []
-        s = ""
-        for i in range(panjang(item)):
-            if item[i] == delimiter:
-                temp = tambahArray(temp, [s])
-                s = ""
-            elif (i == panjang(item) - 1 and item[i] == '\n'):
-                break
-            else:
-                s += item[i]
-        temp = tambahArray(temp, [s])
-        arrofarr = tambahArray(arrofarr, [temp])
-    return arrofarr
+    for filename in os.listdir(args.nama_folder):
+        arr = []
+        arrofarr = []
+        delimiter = ';'
+        with open(os.path.join(args.nama_folder, nama_file), 'r') as data:
+            for item in data:
+                arr = tambahArray(arr, [item])
+        for item in arr:
+            temp = []
+            s = ""
+            for i in range(panjang(item)):
+                if item[i] == delimiter:
+                    temp = tambahArray(temp, [s])
+                    s = ""
+                elif (i == panjang(item) - 1 and item[i] == '\n'):
+                    break
+                else:
+                    s += item[i]
+            temp = tambahArray(temp, [s])
+            arrofarr = tambahArray(arrofarr, [temp])
+        return arrofarr
 
 
 def panjangMaksKolomTabel(data):

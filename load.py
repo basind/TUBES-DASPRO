@@ -1,5 +1,6 @@
 import argparse
 import os
+from helper import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument("nama_folder")
@@ -30,48 +31,13 @@ def panjang (obj):
 # nilai "6" yang ada di inisiasi game itu berasal dari file percobaan yang kubuat.
 # bisa diubah lagi.
 def loadGame():
-    for filename in os.listdir(args.nama_folder):
-        game = [[]for i in range(6)]
-        with open(os.path.join(args.nama_folder, 'game.csv'), 'r') as file_object:
-            next(file_object)
-            gameTmp = file_object.readlines()
-            for i in range(panjang(gameTmp)):
-                line = pemisah(gameTmp[i])
-                game[i] = line
-        return (game)
+    return potongDataCSV('game.csv')
 
 def loadUser():
-    for filename in os.listdir(args.nama_folder):
-        user = [[]for i in range(6)]
-        with open(os.path.join(args.nama_folder, 'user.csv'), 'r') as file_object:
-            next(file_object)
-            userTmp = file_object.readlines()
-            for i in range(panjang(userTmp)):
-                line = pemisah(userTmp[i])
-                user[i] = line
-        return (user)
+    return potongDataCSV('user.csv')
     
 def loadRiwayat():
-    for filename in os.listdir(args.nama_folder):
-        riwayat = [[]for i in range(6)]
-        with open(os.path.join(args.nama_folder, 'riwayat.csv'), 'r') as file_object:
-            next(file_object)
-            riwayatTmp = file_object.readlines()
-            for i in range(panjang(riwayatTmp)):
-                line = pemisah(riwayatTmp[i])
-                riwayat[i] = line
-        return (riwayat)
-
+    return potongDataCSV('riwayat.csv')
 
 def loadKepemilikan():
-    for filename in os.listdir(args.nama_folder):
-        kepemilikan = [[]for i in range(6)]
-        with open(os.path.join(args.nama_folder, 'kepemilikan.csv'), 'r') as file_object:
-            next(file_object)
-            kepemilikanTmp = file_object.readlines()
-            for i in range(panjang(kepemilikanTmp)):
-                line = pemisah(kepemilikanTmp[i])
-                kepemilikan[i] = line
-        return (kepemilikan)
-
-print(loadGame())
+    return potongDataCSV('kepemilikan.csv')
