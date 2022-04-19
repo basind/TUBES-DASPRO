@@ -33,8 +33,3 @@ def login():
         print(f'Halo {user[x][2]}! Selamat datang di "Binomo"')
     else:
         print('Password atau username salah atau tidak ditemukan.')
-            
-
-
-
-             

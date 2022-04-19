@@ -1,6 +1,8 @@
 """
 Program utama binomo
 """
+from f2_5 import *
+from f6_9 import *
 from f10_13 import *
 from b01_chiper import *
 from helper import *
@@ -13,7 +15,7 @@ data_riwayat = potongDataCSV('riwayat.csv')
 
 
 # Dummy data
-current_user_id = '1'
+current_user_id = 1
 
 # Testing purpose -> cariGameDimiliki()
 # print(data_game)

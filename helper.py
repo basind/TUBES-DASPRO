@@ -30,7 +30,7 @@ def potongDataCSV(nama_file):
     arr = []
     arrofarr = []
     delimiter = ';'
-    with open(nama_file, 'r') as data:
+    with open('database'/nama_file, 'r') as data:
         for item in data:
             arr = tambahArray(arr, [item])
     for item in arr:
