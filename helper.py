@@ -186,3 +186,32 @@ def findGame (gameId, gamDb):
                 isAvail = False
     return barisGame, isAvail
 
+
+def sortKey (masukan):
+    key = ""
+    skema = ""
+
+    for elm in masukan:
+        if (elm == "+") or (elm == "-"):
+            skema += elm
+        else:
+            key += elm
+    
+    return key, skema
+    
+
+def bubbleSortMatriks (matriks, kolomKey, skema):
+    nMatriks = panjang(matriks)
+
+    if (skema == "+"):
+        for i in range(1,nMatriks - 1):
+            for j in range(1, nMatriks-i-1):
+                if (matriks[j][kolomKey] > matriks[j+1][kolomKey]):
+                    matriks[j+1], matriks[j] = matriks[j], matriks[j+1]
+    else:
+        for i in range(1,nMatriks - 1):
+            for j in range(1, nMatriks-i-1):
+                if (matriks[j][kolomKey] < matriks[j+1][kolomKey]):
+                    matriks[j+1], matriks[j] = matriks[j], matriks[j+1]
+   
+    return matriks

@@ -45,8 +45,8 @@ def ubahStok (gameToko):
 
 
  
-def listGameToko ():
-    # Fungsi menampilkan list game di toko berdasarkan keyword pengguna. 
+def listGameToko (gameToko):
+    # Prosedur menampilkan list game di toko berdasarkan keyword pengguna. 
     # Secara default diurutkan berdasar pada ID GAME dari terkecil ke terbesar. 
     # Menerima inputan sebuah string "<keyword><+/->". 
     # + menandakan diurutkan ascending, 
@@ -57,7 +57,22 @@ def listGameToko ():
     # KAMUS LOKAL
 
     # ALGORITMA
-    ...
+    inputan = input("Skema sorting : ")
+
+    key, skema = hp.sortKey(inputan)
+
+    kolKey = 0
+    for i in range(6):
+        if gameToko[0][i] == key:
+            kolKey = i
+    
+    tmpGameToko = hp.bubbleSortMatriks(gameToko, kolKey, skema)
+
+    for i in range(1, hp.panjang(gameToko)):
+        print(f"{tmpGameToko[i][0]} | {tmpGameToko[i][1]} | {tmpGameToko[i][2]} | {tmpGameToko[i][3]} | {tmpGameToko[i][4]} | {tmpGameToko[i][5]}")
+
+   
+   
 
 
 def beliGame (gameToko,username,user, kepemilikan):
@@ -121,8 +136,7 @@ def listGame (userId, gameToko, kepemilikan):
         print("Maaf, kamu belum membeli game. Ketik perintah beli_game untuk beli.")
     else:
         print("Daftar game :")
-        for i in range (n):
+        for i in range (1,n):
             if (kepemilikan[i][1] == userId):
                 barisGame, avail = hp.findGame(kepemilikan[i][0], gameToko)    
                 print(f"{i+1}. {kepemilikan[i][0]}  |  {gameToko[barisGame][1]}  |  {gameToko[barisGame][2]}  |  {gameToko[barisGame][3]}   |   {hp.formatSaldoOutput(gameToko[barisGame][4])}")
-
