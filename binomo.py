@@ -1,10 +1,16 @@
 """
 Program utama binomo
+---
+List Admin:
+- Username: admin1 ;; Pass: pass_admin1
+- Username: admin2 ;; Pass: pass_admin2
+- Username: admin3 ;; Pass: pass_admin3
 """
 from f2_5 import *
 # from f6_9 import *
 # from f10_13 import *
-# from b01_chiper import *
+from f14_f17 import *
+from b01_chiper import *
 from help import *
 from helper import *
 from load import *
@@ -15,31 +21,9 @@ data_user = loadUser()
 data_kepemilikan = loadKepemilikan()
 data_riwayat = loadRiwayat()
 
-
 # Current user data
 current_user_id = ''
 current_user_role = ''
-
-# Testing purpose -> cariGameDimiliki()
-# print(data_game)
-# print('--------------')
-# print(data_user)
-# print('--------------')
-# print(data_kepemilikan)
-# print('--------------')
-# print(data_riwayat)
-
-# cariGameDimiliki(current_user_id, data_game, data_kepemilikan)
-
-# cariGameToko(data_game)
-
-# data_user = topUp(data_user)
-
-# lihatRiwayat(current_user_id, data_riwayat)
-
-# chiperDecript(chiperEncript('123_!#@chaos_membuat-dasPrO0!'),
-#            'tahusah!')
-
 
 print('=== SELAMAT DATANG dI BINOMO ===')
 user = login(data_user)
@@ -51,7 +35,7 @@ while(True):
     # pilih cmd
     if current_user_role == 'Admin':
         if cmd == 'register':
-            pass
+            data_user = registrasi(data_user)
         elif cmd == 'tambah_game':
             pass
         elif cmd == 'ubah_game':
@@ -67,11 +51,13 @@ while(True):
         elif cmd == 'help':
             pass
         elif cmd == 'save':
-            pass
+            data = [data_game, data_user, data_kepemilikan, data_riwayat]
+            data_legend = ['game.csv', 'user.csv', 'kepemilikan.csv', 'riwayat.csv']
+            save(data, data_legend)
         elif cmd == 'exit':
             break
         else:
-            print('Perintah salah!!.')
+            print('Perintah tidak tersedia.')
     else:
         if cmd == 'list_game_toko':
             pass
@@ -88,8 +74,10 @@ while(True):
         elif cmd == 'help':
             pass
         elif cmd == 'save':
-            pass
+            data = [data_game, data_user, data_kepemilikan, data_riwayat]
+            data_legend = ['game.csv', 'user.csv', 'kepemilikan.csv', 'riwayat.csv']
+            save(data, data_legend)
         elif cmd == 'exit':
             break
         else:
-            print('Perintah salah!!.')
+            print('Perintah tidak tersedia.')

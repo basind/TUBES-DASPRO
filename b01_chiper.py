@@ -73,7 +73,6 @@ def chiperEncript(password):  # Asumsi password at leats 8 karakter
     encripted_pass = ''
     for i in range(panjang(password)):
         encripted_pass += table_of_chars[index_keystream[i]][index_pass[i]]
-    print('Hasil enkripsi: ' + encripted_pass)
     return encripted_pass
 
 
@@ -109,5 +108,4 @@ def chiperDecript(encripted_pass, key):
         for j in range(panjang(table_of_chars[index_keystream[i]])):
             if encripted_pass[i] == table_of_chars[index_keystream[i]][j]:
                 decripted_pass += list_of_chars[j]
-    print('Hasil dekripsi: ' + decripted_pass)
     return decripted_pass

@@ -80,12 +80,12 @@ def overwrite(nama_file, matriks):
     with open(nama_file, 'w+') as data:
         for i in range(panjang(matriks)):
             line = ""
-            for j in range(panjang(matriks[i]) - 1):
-                line += str(matriks[i][j]) + ";"
-            if (i == (panjang(matriks) - 1)):
-                line += str(matriks[i][5])
-            else:
-                line += str(matriks[i][5]) + "\n"
+            for j in range(panjang(matriks[i])):
+                line += str(matriks[i][j])
+                if j != panjang(matriks[i]) - 1:
+                    line += ';'
+            if (i != (panjang(matriks) - 1)):
+                line += '\n'
             data.write(line)
 
 
@@ -223,3 +223,16 @@ def bubbleSortMatriks (matriks, kolomKey, skema):
                     matriks[j+1], matriks[j] = matriks[j], matriks[j+1]
    
     return matriks
+
+def pisah(data):
+    # Implementasi manual fungsi split 
+
+    # KAMUS LOKAL
+    # result    : array of string
+    # item      : char 
+
+    # ALGORITMA
+    result = []
+    for item in data:
+        result = tambahArray(result, [item])
+    return result
