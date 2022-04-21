@@ -29,6 +29,8 @@ def registrasi(user):
         if mFirst:
             id_digits += splited_last_user_id[i]
     leading_char = ''
+    if id_digits == '':
+        id_digits = '0'
     for i in range(5-panjang(id_digits)):
         leading_char += '0'
     id_digits = int(id_digits)
