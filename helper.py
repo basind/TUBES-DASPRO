@@ -236,3 +236,28 @@ def pisah(data):
     for item in data:
         result = tambahArray(result, [item])
     return result
+
+def copyList2D(List):
+    # Melakukan copy List-2D menjadi list baru
+
+    # KAMUS LOKAL
+
+    # ALGORITMA
+    new_list = []
+    for oitem in List:
+        temp_list = []
+        for item in oitem:
+            temp_list = tambahArray(temp_list, [item])
+        new_list = tambahArray(new_list, [temp_list])
+    return new_list
+
+def copyList1D(List):
+    # Melakukan copy List-1D menjadi list baru
+
+    # KAMUS LOKAL
+
+    # ALGORITMA
+    new_list = []
+    for item in List:
+        new_list = tambahArray(new_list, [item])
+    return new_list

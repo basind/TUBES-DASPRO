@@ -8,7 +8,7 @@ List Admin:
 """
 from f2_5 import *
 # from f6_9 import *
-# from f10_13 import *
+from f10_13 import *
 from f14_f17 import *
 from b01_chiper import *
 from help import *
@@ -45,9 +45,9 @@ while(True):
         elif cmd == 'list_game_toko':
             pass
         elif cmd == 'search_game_at_store':
-            pass
+            cariGameToko(data_game)
         elif cmd == 'topup':
-            pass
+            data_user = topUp(data_user)
         elif cmd == 'help':
             pass
         elif cmd == 'save':
@@ -66,11 +66,11 @@ while(True):
         elif cmd == 'list_game':
             pass
         elif cmd == 'search_my_game':
-            pass
+            cariGameDimiliki(current_user_id, data_game, data_kepemilikan)
         elif cmd == 'search_game_at_store':
-            pass
+            cariGameToko(data_game)
         elif cmd == 'riwayat':
-            pass
+            lihatRiwayat(current_user_id, data_riwayat)
         elif cmd == 'help':
             pass
         elif cmd == 'save':

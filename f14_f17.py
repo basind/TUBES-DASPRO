@@ -4,7 +4,7 @@ import os
 def save(data, data_legend):
     nama_folder = input('Masukkan nama folder penyimpanan: ')
     
-    # test get current working directory
+    # get current working directory
     curr_path = os.getcwd()
     list_dirs = []
     isExist = False

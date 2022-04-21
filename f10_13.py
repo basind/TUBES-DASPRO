@@ -1,6 +1,5 @@
 from helper import *
 
-
 def cariGameDimiliki(user_id, data_game, data_kepemilikan):
     # Spesifikasi
     # Mendapatkan informasi game sesuai dengan query yang diminta oleh pengguna pada
@@ -16,6 +15,8 @@ def cariGameDimiliki(user_id, data_game, data_kepemilikan):
     print('Masukkan Tahun Rilis Game: ', end='')
     tahun = input()
 
+    game_data = copyList2D(data_game)
+
     current_user_game_id = []
     for i in range(1, panjang(data_kepemilikan)):
         if data_kepemilikan[i][1] == user_id:
@@ -25,9 +26,11 @@ def cariGameDimiliki(user_id, data_game, data_kepemilikan):
     # fetch game yang dimiliki current_user
     counter = 0
     renew_data_game = []
-    for i in range(1, panjang(data_game)):
-        if current_user_game_id[counter] == data_game[i][0]:
-            renew_data_game = tambahArray(renew_data_game, [data_game[i]])
+    for i in current_user_game_id and range(1, panjang(game_data)):
+        if counter == panjang(current_user_game_id):
+            break
+        if current_user_game_id[counter] == game_data[i][0]:
+            renew_data_game = tambahArray(renew_data_game, [game_data[i]])
             counter += 1
 
     # filter hasil pencarian
@@ -44,7 +47,7 @@ def cariGameDimiliki(user_id, data_game, data_kepemilikan):
         else:
             if renew_data_game[i][0] == game_id and renew_data_game[i][3] == tahun:
                 daftar_game = tambahArray(daftar_game, [renew_data_game[i]])
-
+    
     for i in range(1, panjang(daftar_game)):
         daftar_game[i][4] = 'Rp' + formatSaldoOutput(daftar_game[i][4])
 
@@ -60,9 +63,9 @@ def cariGameDimiliki(user_id, data_game, data_kepemilikan):
             else:
                 print(
                     f"{item[0] :<{panjang_maks_kolom[0]}} | {item[1] :<{panjang_maks_kolom[1]}} | {item[2] :<{panjang_maks_kolom[2]}} | {item[3] :<{panjang_maks_kolom[3]}} | {item[4] :<{panjang_maks_kolom[4]}}")
+    
 
-
-def cariGameToko(data_game):
+def cariGameToko(game_data):
     # Spesifikasi
     # ...
 
@@ -75,12 +78,15 @@ def cariGameToko(data_game):
     game_id = input()
     print('Masukkan Nama Game: ', end='')
     game_nama = input()
-    print('Masukkan Harga Game (Ex: 100.000): ', end='')
+    print('Masukkan Harga Game (Ex: Rp100.000 atau Rp100000): Rp', end='')
     game_harga = input()
     print('Masukkan Kategori Game: ', end='')
     game_kategori = input()
     print('Masukkan Tahun Rilis Game: ', end='')
     game_tahun = input()
+
+    # copy game_data
+    data_game = copyList2D(game_data)
 
     # filter data
     daftar_game = []
@@ -106,7 +112,7 @@ def cariGameToko(data_game):
         daftar_game_temp = []
     if game_harga != '':
         for i in range(panjang(daftar_game)):
-            if daftar_game[i][4] == game_harga:
+            if daftar_game[i][4] == formatSaldoInput(game_harga):
                 daftar_game_temp = tambahArray(
                     daftar_game_temp, [daftar_game[i]])
         daftar_game = daftar_game_temp
@@ -196,7 +202,7 @@ def topUp(data_user):
     return data_user
 
 
-def lihatRiwayat(user_id, data_riwayat):
+def lihatRiwayat(user_id, riwayat_data):
     # Spesifikasi
     # ...
 
@@ -204,6 +210,9 @@ def lihatRiwayat(user_id, data_riwayat):
     # ...
 
     # ALGORITMA
+
+    # copy riwayat_data
+    data_riwayat = copyList2D(riwayat_data)
 
     # Fetching riwayat user yang bersesuaian
     user_riwayat = [['ID', 'Nama', 'Harga', 'User ID', 'Tahun Beli']]
