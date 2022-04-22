@@ -261,3 +261,19 @@ def copyList1D(List):
     for item in List:
         new_list = tambahArray(new_list, [item])
     return new_list
+
+
+def maks (db, kolom):
+    n = 0
+    for i in range(panjang(db)):
+        if (panjang(db[i][kolom]) > n):
+            n = panjang(db[i][kolom])
+    return n
+
+def spasi (db, maks, baris, kolom):
+    keluaran = " " * (maks - panjang(db[baris][kolom]))
+    return keluaran
+
+def perapih(db, baris, kolom):
+    keluaran = str(db[baris][kolom]) + spasi(db, maks(db, kolom), baris,  kolom)
+    return keluaran

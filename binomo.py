@@ -11,6 +11,7 @@ from f2_5 import *
 from f10_13 import *
 from f14_f17 import *
 from b01_chiper import *
+from f6_9 import beliGame, listGame, listGameToko, ubahStok
 from help import *
 from helper import *
 from load import *
@@ -41,9 +42,9 @@ while(True):
         elif cmd == 'ubah_game':
             pass
         elif cmd == 'ubah_stok':
-            pass
+            ubahStok(data_game)
         elif cmd == 'list_game_toko':
-            pass
+            listGameToko(data_game)
         elif cmd == 'search_game_at_store':
             cariGameToko(data_game)
         elif cmd == 'topup':
@@ -60,11 +61,11 @@ while(True):
             print('Perintah tidak tersedia.')
     else:
         if cmd == 'list_game_toko':
-            pass
+            listGameToko(data_game)
         elif cmd == 'buy_game':
-            pass
+            beliGame(data_game, current_user_id, data_user, data_kepemilikan)
         elif cmd == 'list_game':
-            pass
+            listGame(current_user_id, data_game, data_kepemilikan)
         elif cmd == 'search_my_game':
             cariGameDimiliki(current_user_id, data_game, data_kepemilikan)
         elif cmd == 'search_game_at_store':

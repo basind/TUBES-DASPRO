@@ -1,7 +1,9 @@
+
 import helper as hp
 
 global gameToko
 gameToko = hp.potongDataCSV("game.csv")
+kepemilikan = hp.potongDataCSV("kepemilikan.csv")
 
 def ubahStok (gameToko):
     # ubahStok(gameToko). input berupa matriks
@@ -69,13 +71,19 @@ def listGameToko (gameToko):
     tmpGameToko = hp.bubbleSortMatriks(gameToko, kolKey, skema)
 
     for i in range(1, hp.panjang(gameToko)):
-        print(f"{tmpGameToko[i][0]} | {tmpGameToko[i][1]} | {tmpGameToko[i][2]} | {tmpGameToko[i][3]} | {tmpGameToko[i][4]} | {tmpGameToko[i][5]}")
+        kolom1 = hp.perapih(tmpGameToko, i, 0)
+        kolom2 = hp.perapih(tmpGameToko, i, 1)
+        kolom3 = hp.perapih(tmpGameToko, i, 2)
+        kolom4 = hp.perapih(tmpGameToko, i, 3) 
+        kolom5 = hp.formatSaldoOutput(hp.perapih(gameToko, i, 4))
+        kolom6 = hp.perapih(tmpGameToko, i, 5)   
+        print(f"{kolom1} | {kolom2} | {kolom3} | {kolom4} | {kolom5} | {kolom6}")
 
    
-   
+  
 
 
-def beliGame (gameToko,username,user, kepemilikan):
+def beliGame (gameToko,userId,user, kepemilikan):
     # Prosedur beliGame akan mengurangi stok dari game yang ID nya diinput oleh user, serta
     # user memiliki saldo yang cukup dan belum memiliki game tersebut. 
     # Bila belum dimiliki, namun saldo belum cukup maka akan diberikan pesan saldo tidak cukup. 
@@ -90,14 +98,20 @@ def beliGame (gameToko,username,user, kepemilikan):
     # mencari posisi pengguna di data base user.csv
     barisUser = 0
     for i in range(hp.panjang(user)):
-        if user[i][1] == username:
+        if user[i][0] == userId:
             baris = i 
     
     # menerima input game id
     gameId = (input()).upper()
 
     # pengecekan game ada atau tidak
-    barisGame, isAvail = hp.findGame(kepemilikan[i][0], gameToko)   
+    barisGame, isAvail = hp.findGame(kepemilikan[i][0], gameToko) 
+
+    idxKepemlikikan =  0
+    for i in range(hp.panjang(kepemilikan)):
+        if kepemilikan[i][0] == "":
+            idxKepemlikikan = i
+            break  
 
     if isAvail == False:
         print("Stok Game tersebut sedang habis!")
@@ -117,7 +131,8 @@ def beliGame (gameToko,username,user, kepemilikan):
                 print("Saldo anda tidak cukup untuk membeli Game tersebut!")
             else:
                 gameToko[barisGame][5] = f"{int(gameToko[barisGame][5]) - 1}"
-    return gameToko
+                kepemilikan[idxKepemlikikan][0] == gameId
+                kepemilikan[idxKepemlikikan][1] == userId
 
 
 
@@ -138,5 +153,12 @@ def listGame (userId, gameToko, kepemilikan):
         print("Daftar game :")
         for i in range (1,n):
             if (kepemilikan[i][1] == userId):
-                barisGame, avail = hp.findGame(kepemilikan[i][0], gameToko)    
-                print(f"{i+1}. {kepemilikan[i][0]}  |  {gameToko[barisGame][1]}  |  {gameToko[barisGame][2]}  |  {gameToko[barisGame][3]}   |   {hp.formatSaldoOutput(gameToko[barisGame][4])}")
+                barisGame, avail = hp.findGame(kepemilikan[i][0], gameToko)
+                kolom1 = hp.perapih(kepemilikan, i, 0)
+                kolom2 = hp.perapih(gameToko, barisGame, 1)
+                kolom3 = hp.perapih(gameToko, barisGame, 2)
+                kolom4 = hp.perapih(gameToko, barisGame, 3) 
+                kolom5 = hp.formatSaldoOutput(hp.perapih(gameToko, barisGame, 4))   
+                print(f"{i+1}. {kolom1}  |  {kolom2}  |  {kolom3}  |  {kolom4}   |   {kolom5}")
+
+listGameToko(gameToko)
