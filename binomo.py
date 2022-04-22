@@ -7,11 +7,10 @@ List Admin:
 - Username: admin3 ;; Pass: pass_admin3
 """
 from f2_5 import *
-# from f6_9 import *
+from f6_9 import *
 from f10_13 import *
-from f14_f17 import *
+from f14_17 import *
 from b01_chiper import *
-from f6_9 import beliGame, listGame, listGameToko, ubahStok
 from help import *
 from helper import *
 from load import *
@@ -38,7 +37,7 @@ while(True):
         if cmd == 'register':
             data_user = registrasi(data_user)
         elif cmd == 'tambah_game':
-            pass
+            data_game = tambahGame(data_game)
         elif cmd == 'ubah_game':
             pass
         elif cmd == 'ubah_stok':

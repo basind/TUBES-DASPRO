@@ -1,9 +1,4 @@
-
 import helper as hp
-
-global gameToko
-gameToko = hp.potongDataCSV("game.csv")
-kepemilikan = hp.potongDataCSV("kepemilikan.csv")
 
 def ubahStok (gameToko):
     # ubahStok(gameToko). input berupa matriks
@@ -32,12 +27,12 @@ def ubahStok (gameToko):
         ubahStok = int(input("Masukkan jumlah: "))
         if (ubahStok < 0):
             if (int(gameToko[i][5]) >= (ubahStok * (-1))):
-                gameToko[i][5] = int(gameToko[i][5]) + ubahStok
+                gameToko[i][5] = str(int(gameToko[i][5]) + ubahStok)
                 print(f"Stok game {nama} berhasil dikurangi. Stok sekarang: {gameToko[i][5]}")
             else:
                 print(f"Stok game {nama} gagal dikurangi karena stok kurang. Stok sekarang: {gameToko[i][5]} (< {ubahStok*(-1)})")
         elif (ubahStok > 0):
-            gameToko[i][5] = int(gameToko[i][5]) + ubahStok
+            gameToko[i][5] = str(int(gameToko[i][5]) + ubahStok)
             print(f"Stok game {nama} berhasil ditambahkan. Stok sekarang: {gameToko[i][5]}")
         else:
             print(f"Stok game {nama} tetap. Stok sekarang: {gameToko[i][5]}")
@@ -160,5 +155,3 @@ def listGame (userId, gameToko, kepemilikan):
                 kolom4 = hp.perapih(gameToko, barisGame, 3) 
                 kolom5 = hp.formatSaldoOutput(hp.perapih(gameToko, barisGame, 4))   
                 print(f"{i+1}. {kolom1}  |  {kolom2}  |  {kolom3}  |  {kolom4}   |   {kolom5}")
-
-listGameToko(gameToko)
