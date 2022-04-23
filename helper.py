@@ -14,7 +14,7 @@ def panjang(item):
 
     # ALGORITMA
     counter = 0
-    for j in item:
+    for _ in item:
         counter += 1
     return counter
 
@@ -34,7 +34,7 @@ def potongDataCSV(nama_file):
     # KAMUS LOKAL
 
     # ALGORITMA
-    for filename in os.listdir(args.nama_folder):
+    for _ in os.listdir(args.nama_folder):
         arr = []
         arrofarr = []
         delimiter = ';'
@@ -277,3 +277,25 @@ def spasi (db, maks, baris, kolom):
 def perapih(db, baris, kolom):
     keluaran = str(db[baris][kolom]) + spasi(db, maks(db, kolom), baris,  kolom)
     return keluaran
+
+def isEmpty(data):
+    # Mengecek apakah suatu data kosong atau tidak
+    
+    # KAMUS LOKAL
+
+    # ALGORITMA
+    if panjang(data) == 0:
+        return True
+    return False
+
+def olahFinalData(data_temp, data):
+    # Mengolah data final sebelum di save
+
+    # KAMUS LOKAL
+    # indx: integer
+
+    # ALGORITMA
+    for indx in range(panjang(data_temp)):
+        if panjang(data_temp[indx]) == 0:
+            data_temp[indx] = data[indx]
+    return data_temp

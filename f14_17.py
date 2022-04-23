@@ -9,7 +9,7 @@ def save(data, data_legend):
     curr_path = os.getcwd()
     list_dirs = []
     isExist = False
-    for (root_dir_path, sub_dirs, files) in os.walk(curr_path):
+    for (_, sub_dirs, _) in os.walk(curr_path):
         list_dirs = tambahArray(list_dirs, sub_dirs)
         break
 
@@ -31,11 +31,11 @@ def save(data, data_legend):
 
     print('Loading', end='')
     sys.stdout.flush()
-    for i in range(3):
+    for _ in range(3):
         time.sleep(2)
         print('.', end='')
         sys.stdout.flush()
-    print('\nFile berhasil disimpan.\n')
+    print('\nFile berhasil disimpan.')
 
 
 def keluar(data, data_legend):

@@ -39,8 +39,10 @@ def pilihOutput(pilihan):
     else:
         print('No komen')
 
-print('Pertanyaanmu: ', end='')
-quest = input()
-pilihan = ((8121*(time.time()) + 28411)//1) % 8 
-print('Jawaban: ', end='')
-pilihOutput(pilihan)
+def kerangajaib():
+    print('Pertanyaanmu: ', end='')
+    input()
+    pilihan = ((8121*(time.time()) + 28411)//1) % 8 
+    print('Jawaban: ', end='')
+    pilihOutput(pilihan)
+    print()

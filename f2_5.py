@@ -37,17 +37,23 @@ def registrasi(user):
     new_id = 'USR' + leading_char + str(id_digits + 1) 
     
     # cek apakah username valid
+    if un == '':
+        print('\n!!Username tidak valid!!\n')
+        return user
     for i in un:
         if (48 <= ord(i) <= 57) or (65 <= ord(i) <= 90) or (97 <= ord(i) <= 122) or (ord(i) == 45) or (ord(i) == 95):
             pass
         else:
-            print('Username tidak valid')
+            print('\n!!Username tidak valid!!\n')
             return user
 
     # cek apakah password valid
+    if pw == '':
+        print('\n!!Password tidak valid!!\n')
+        return user
     for item in pw:
         if panjang(pw) < 8 or ord(item) < 32 or ord(item) > 126:
-            print('Password tidak valid')
+            print('\n!!Password tidak valid!!\n')
             return user
     
     # cek apakah username telah ada
@@ -55,10 +61,10 @@ def registrasi(user):
     for item in user:
         if item[1] == un:
             isUSExist = True
-            print(f'Username {un} sudah terpakai, silahkan menggunakan username lain.')
+            print(f'\n!!Username {un} sudah terpakai, silahkan menggunakan username lain!!\n')
             return user
     if not isUSExist:
-        print(f'User {un} telah berhasil dibuat!')
+        print(f'\nUser "{un}" telah berhasil dibuat!\n')
         return tambahArray(user, [[new_id, un, nama, chiperEncript(pw), 'User', 0]])
 
 
@@ -73,27 +79,26 @@ def login(user):
     key = 'tahusah!' # WARNING 
 
     # looping hingga input username dan password sesuai
-    while(True):
-        un = input('Masukkan username: ')
-        pw = input('Masukkan password: ')
-        check = False
-        index = 0
-        # validasi username dan password
-        for i in range (1,hp.panjang(user)):
-            if user[i][1] != un or chiperDecript(user[i][3], key) != pw:
-                check = False
-            else:
-                check = True
-                index = i
-                break
-        if check == True:
-            print(f'\nHalo {user[index][2]}! Selamat datang di "Binomo"\n')
-            if user[index][4] == 'Admin':
-                return ["Admin", user[index][0]]
-            else:
-                return ["User", user[index][0]]
+    un = input('Masukkan username: ')
+    pw = input('Masukkan password: ')
+    check = False
+    index = 0
+    # validasi username dan password
+    for i in range (1,hp.panjang(user)):
+        if user[i][1] != un or chiperDecript(user[i][3], key) != pw:
+            check = False
         else:
-            print('\n!!Password atau username salah atau tidak ditemukan!!\n')
+            check = True
+            index = i
+            break
+    if check == True:
+        print(f'\nHalo {user[index][2]}! Selamat datang di "Binomo"\n')
+        if user[index][4] == 'Admin':
+            return ["Admin", user[index][0], user[index][1]]
+        else:
+            return ["User", user[index][0], user[index][1]]
+    else:
+        print('\n!!Password atau username salah atau tidak ditemukan!!\n')
 
 def tambahGame(data_game):
     # Spesifikasi
@@ -190,7 +195,7 @@ def ubahGame(data_game):
     ng = input('Masukkan nama game: ')
     ka = input('Masukkan kategori: ')
     tr = input('Masukkan tahun rilis: ')
-    ha = input('Masukkan harga: ')
+    ha = input('Masukkan harga (Ex: Rp10.000 atau Rp10000): Rp')
 
     # copy data_game
     data_game = copyList2D(data_game)

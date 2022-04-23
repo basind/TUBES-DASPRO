@@ -63,7 +63,7 @@ def cariGameDimiliki(user_id, data_game, data_kepemilikan):
             else:
                 print(
                     f"{item[0] :<{panjang_maks_kolom[0]}} | {item[1] :<{panjang_maks_kolom[1]}} | {item[2] :<{panjang_maks_kolom[2]}} | {item[3] :<{panjang_maks_kolom[3]}} | {item[4] :<{panjang_maks_kolom[4]}}")
-    
+    print()   
 
 def cariGameToko(game_data):
     # Spesifikasi
@@ -148,7 +148,7 @@ def cariGameToko(game_data):
             else:
                 print(
                     f"{item[0] :<{panjang_maks_kolom[0]}} | {item[1] :<{panjang_maks_kolom[1]}} | {item[2] :<{panjang_maks_kolom[2]}} | {item[3] :<{panjang_maks_kolom[3]}} | {item[4] :<{panjang_maks_kolom[4]}} | {item[5] :<{panjang_maks_kolom[5]}}")
-
+    print()
 
 def topUp(data_user):
     # Spesifikasi
@@ -235,3 +235,4 @@ def lihatRiwayat(user_id, riwayat_data):
             else:
                 print(
                     f"{item[0] :<{panjang_maks_kolom[0]}} | {item[1] :<{panjang_maks_kolom[1]}} | {item[2] :<{panjang_maks_kolom[2]}} | {item[4] :<{panjang_maks_kolom[4]}}")
+    print()
