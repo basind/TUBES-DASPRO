@@ -1,3 +1,4 @@
+import time, sys
 from helper import *
 import os
 
@@ -27,3 +28,23 @@ def save(data, data_legend):
     for index in range(panjang(data)):
         temp_file_path = defined_dir_path + '\\' + data_legend[index]
         overwrite(temp_file_path, data[index])
+
+    print('Loading', end='')
+    sys.stdout.flush()
+    for i in range(3):
+        time.sleep(2)
+        print('.', end='')
+        sys.stdout.flush()
+    print('\nFile berhasil disimpan.\n')
+
+
+def keluar(data, data_legend):
+    answer = input('Apakah Anda mau melakukan penyimpanan file yang sudah diubah? (y/n): ')
+    
+
+    while not (answer == 'Y' or answer == 'N' or answer == 'y' or answer == 'n'):
+        answer = input('Apakah Anda mau melakukan penyimpanan file yang sudah diubah? (y/n): ')
+
+    if answer == 'y' or answer == 'Y':
+        save(data, data_legend)
+    print('\n=== Terima kasih telah menggunakan Binomo ===')

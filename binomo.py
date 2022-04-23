@@ -15,31 +15,33 @@ from help import *
 from helper import *
 from load import *
 
-# Fetch data dari database
-data_game = loadGame()
-data_user = loadUser()
-data_kepemilikan = loadKepemilikan()
-data_riwayat = loadRiwayat()
+# Data temp
+data_game_temp, data_user_temp, data_kepemilikan_temp, data_riwayat_temp = [], [], [], []
 
 # Current user data
 current_user_id = ''
 current_user_role = ''
 
-print('=== SELAMAT DATANG dI BINOMO ===')
-user = login(data_user)
+print('=== SELAMAT DATANG dI BINOMO ===\n')
+user = login(loadUser())
 current_user_id = user[1]
 current_user_role = user[0]
 
 while(True):
-    cmd = input('>> ')
+    # Fetch data dari database
+    data_game = loadGame()
+    data_user = loadUser()
+    data_kepemilikan = loadKepemilikan()
+    data_riwayat = loadRiwayat()
+    cmd = input('>>> ')
     # pilih cmd
     if current_user_role == 'Admin':
         if cmd == 'register':
-            data_user = registrasi(data_user)
+            data_user_temp = registrasi(data_user)
         elif cmd == 'tambah_game':
-            data_game = tambahGame(data_game)
+            data_game_temp = tambahGame(data_game)
         elif cmd == 'ubah_game':
-            pass
+            data_game_temp = ubahGame(data_game)
         elif cmd == 'ubah_stok':
             ubahStok(data_game)
         elif cmd == 'list_game_toko':
@@ -47,14 +49,17 @@ while(True):
         elif cmd == 'search_game_at_store':
             cariGameToko(data_game)
         elif cmd == 'topup':
-            data_user = topUp(data_user)
+            data_user_temp = topUp(data_user)
         elif cmd == 'help':
             pass
         elif cmd == 'save':
-            data = [data_game, data_user, data_kepemilikan, data_riwayat]
+            data = [data_game_temp, data_user_temp, data_kepemilikan_temp, data_riwayat_temp]
             data_legend = ['game.csv', 'user.csv', 'kepemilikan.csv', 'riwayat.csv']
             save(data, data_legend)
         elif cmd == 'exit':
+            data = [data_game_temp, data_user_temp, data_kepemilikan_temp, data_riwayat_temp]
+            data_legend = ['game.csv', 'user.csv', 'kepemilikan.csv', 'riwayat.csv']
+            keluar(data, data_legend)
             break
         else:
             print('Perintah tidak tersedia.')
@@ -74,10 +79,13 @@ while(True):
         elif cmd == 'help':
             pass
         elif cmd == 'save':
-            data = [data_game, data_user, data_kepemilikan, data_riwayat]
+            data = [data_game_temp, data_user_temp, data_kepemilikan_temp, data_riwayat_temp]
             data_legend = ['game.csv', 'user.csv', 'kepemilikan.csv', 'riwayat.csv']
             save(data, data_legend)
         elif cmd == 'exit':
+            data = [data_game_temp, data_user_temp, data_kepemilikan_temp, data_riwayat_temp]
+            data_legend = ['game.csv', 'user.csv', 'kepemilikan.csv', 'riwayat.csv']
+            keluar(data, data_legend)
             break
         else:
             print('Perintah tidak tersedia.')
