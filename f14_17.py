@@ -37,6 +37,40 @@ def save(data, data_legend):
         sys.stdout.flush()
     print('\nFile berhasil disimpan.')
 
+def help (role): #bisa dipanggil di setiap momen dengan kode '-help'
+    if role == 'Admin':
+        print(f'======================= HELP =======================')
+        print(f'1.  {"register" :<20} -> Melakukan registrasi user baru')    
+        print(f'2.  {"login" :<20} -> Melakukan login ke dalam sistem')    
+        print(f'3.  {"tambah_game" :<20} -> Menambah game yang dijual pada toko')    
+        print(f'4.  {"list_game_toko" :<20} -> Melihat list game yang dijual pada toko')    
+        print(f'5.  {"ubah_game" :<20} -> Mengubah data game pada toko')
+        print(f'6.  {"ubah_stok" :<20} -> Mengubah data stok game pada toko')
+        print(f'7.  {"search_game_at_store" :<20} -> Melakukan pencarian pada game toko')
+        print(f'8.  {"topup" :<20} -> Melakukan topup dan topdown')
+        print(f'9.  {"help" :<20} -> Melihat command list')
+        print(f'10. {"save" :<20} -> Menyimpan semua file')
+        print(f'11. {"chiper" :<20} -> Melakakukan simulasi chiper encrypt dan decrypt')
+        print(f'12. {"kerangajaib" :<20} -> Melakukan simulasi kerangajaib')
+        print(f'13. {"tictactoe" :<20} -> Melakukan simulasi game tictactoe')
+        print(f'14. {"exit" :<20} -> Keluar dari sistem')
+    else:
+        print(f'======================= HELP =======================')
+        print(f'1.  {"login" :<20} -> Melakukan login ke dalam sistem')    
+        print(f'2.  {"list_game_toko" :<20} -> Melihat list game yang dijual pada toko')    
+        print(f'3.  {"buy_game" :<20} -> Melakukan pembelian game')
+        print(f'4.  {"list_game" :<20} -> Melihat list game yang dimiliki')
+        print(f'5.  {"search_my_game": <20} -> Melakukan pencarian pada game yang dimiliki') 
+        print(f'6.  {"search_game_at_store" :<20} -> Mencari pencarian pada game toko')
+        print(f'7.  {"riwayat" :<20} -> Melihat riwayat pembelian game')
+        print(f'8.  {"help" :<20} -> Melihat command list')
+        print(f'9.  {"save" :<20} -> Menyimpan semua file')
+        print(f'10. {"chiper" :<20} -> Melakakukan simulasi chiper encrypt dan decrypt')
+        print(f'11. {"kerangajaib" :<20} -> Melakukan simulasi kerangajaib')
+        print(f'12. {"tictactoe" :<20} -> Melakukan simulasi game tictactoe')
+        print(f'13. {"exit" :<20} -> Keluar dari sistem')
+    print()
+
 
 def keluar(data, data_legend):
     answer = input('Apakah Anda mau melakukan penyimpanan file yang sudah diubah? (y/n): ')

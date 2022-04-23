@@ -3,6 +3,7 @@ Bonus 01 - Chiper
 implementasi dengan menggunakan 'vigenere chiper'
 """
 
+import sys, time
 from helper import *
 
 # const global
@@ -28,7 +29,7 @@ for i in range(panjang(list_of_chars)):
     table_of_chars = tambahArray(table_of_chars, [temp])
 
 
-def chiperEncript(password):  # Asumsi password at leats 8 karakter
+def chiperEncript(password, key):  # Asumsi password at leats 8 karakter
     # SPESIFIKASI
     # (-) password character validation
 
@@ -38,7 +39,6 @@ def chiperEncript(password):  # Asumsi password at leats 8 karakter
 
     # key enkripsi
     # perlu diperhatikan: len(key) <= len(password)]
-    key = 'tahusah!'
 
     # pembuatan keystream
     keystream = ''
@@ -109,3 +109,43 @@ def chiperDecript(encripted_pass, key):
             if encripted_pass[i] == table_of_chars[index_keystream[i]][j]:
                 decripted_pass += list_of_chars[j]
     return decripted_pass
+
+def chiperUI():
+    print('Pilih menu: ')
+    print(f'{"enkripsi" :<8} -> Melakukan enkripsi')
+    print(f'{"dekripsi" :<8} -> Melakukan dekripsi')
+    choice = input('-> ')
+    if choice == 'enkripsi':
+        initial_data = input('Masukkan data yang ingin dienkripsi: ')
+        key = input('Masukkan kunci enkripsi: ')
+        if initial_data == '' or key == '':
+            print('\n!!Input tidak valid!!\n')
+        else:
+            print('Melakukan enkripsi\nLoading', end='')
+            sys.stdout.flush()
+            for _ in range(3):
+                time.sleep(2)
+                print('.', end='')
+                sys.stdout.flush()
+            print('\nProses enkripsi berakhir.')
+            time.sleep(1)
+            print(f'Hasil enkripsi {initial_data}')
+            print(f'-> {chiperEncript(initial_data, key)}\n')
+    elif choice == 'dekripsi':
+        initial_data = input('Masukkan data yang ingin didekripsi: ')
+        key = input('Masukkan kunci dekripsi: ')
+        print('Melakukan dekripsi\nLoading', end='')
+        if initial_data == '' or key == '':
+            print('\n!!Input tidak valid!!\n')
+        else:
+            sys.stdout.flush()
+            for _ in range(3):
+                time.sleep(2)
+                print('.', end='')
+                sys.stdout.flush()
+            print('\nProses dekripsi berakhir.')
+            time.sleep(1)
+            print(f'Hasil dekripsi {initial_data}')
+            print(f'-> {chiperDecript(initial_data, key)}\n')
+    else:
+        print("\n!!Tidak ada data yang dimasukkan!!\n")

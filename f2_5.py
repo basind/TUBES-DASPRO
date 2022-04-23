@@ -6,6 +6,9 @@ def registrasi(user):
     un = input('Masukkan username: ')
     pw = input('Masukkan password: ')
 
+    # Encryption key: 
+    key = 'tahusah!' # WARNING
+
     # === creating auto generated ID user ===
     # ---
     # ID user akan memiliki 2 tipe:
@@ -65,7 +68,7 @@ def registrasi(user):
             return user
     if not isUSExist:
         print(f'\nUser "{un}" telah berhasil dibuat!\n')
-        return tambahArray(user, [[new_id, un, nama, chiperEncript(pw), 'User', 0]])
+        return tambahArray(user, [[new_id, un, nama, chiperEncript(pw, key), 'User', 0]])
 
 
 def login(user):
@@ -75,7 +78,7 @@ def login(user):
 
     # ALGORITMA
 
-    # Password encription
+    # Password decryption
     key = 'tahusah!' # WARNING 
 
     # looping hingga input username dan password sesuai
