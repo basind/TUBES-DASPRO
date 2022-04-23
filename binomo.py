@@ -48,10 +48,11 @@ while(True):
     data_kepemilikan = loadKepemilikan()
     data_riwayat = loadRiwayat()
     if current_user_username != '':
+        print('Ketik help untuk melihat list command.')
         cmd = input(f'({current_user_username}) >>> ')
     else:
-        print('* Ketik "login" untuk login sistem.')
-        print('* Ketik "exit" untuk keluar dari sistem.')
+        print('* Ketik login untuk login sistem.')
+        print('* Ketik exit untuk keluar dari sistem.')
         cmd = input('>>> ')
     # pilih cmd
     if current_user_role == 'Admin':
