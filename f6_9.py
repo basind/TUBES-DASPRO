@@ -100,19 +100,14 @@ def beliGame (gameToko,userId,user, kepemilikan):
     barisUser = 0
     for i in range(hp.panjang(user)):
         if user[i][0] == userId:
-            baris = i 
+            barisUser = i 
     
     # menerima input game id
-    gameId = (input()).upper()
+    gameId = (input('Masukkan ID Game: ')).upper()
 
     # pengecekan game ada atau tidak
-    barisGame, isAvail = hp.findGame(kepemilikan[i][0], gameToko) 
+    barisGame, isAvail = hp.findGame(gameId, gameToko) 
 
-    idxKepemlikikan =  0
-    for i in range(hp.panjang(kepemilikan)):
-        if kepemilikan[i][0] == "":
-            idxKepemlikikan = i
-            break  
 
     if isAvail == False:
         print("Stok Game tersebut sedang habis!")
@@ -120,7 +115,7 @@ def beliGame (gameToko,userId,user, kepemilikan):
         # pengecekan sudah dimiliki 
         isOwned = False
         for i in range(hp.panjang(kepemilikan)):
-            if (kepemilikan[i][0] == gameId) and (kepemilikan[i][1] == user[baris][0]):
+            if (kepemilikan[i][0] == gameId) and (kepemilikan[i][1] == user[barisUser][0]):
                 isOwned = True
        
         # pembelian
@@ -128,12 +123,12 @@ def beliGame (gameToko,userId,user, kepemilikan):
             print("Anda sudah memiliki Game tersebut!")
         else:
             # pengecekan saldo
-            if (int(user[baris][5]) < int(gameToko[i][4])):
+            if (int(user[barisUser][5]) < int(gameToko[barisGame][4])):
                 print("Saldo anda tidak cukup untuk membeli Game tersebut!")
             else:
                 gameToko[barisGame][5] = f"{int(gameToko[barisGame][5]) - 1}"
-                kepemilikan[idxKepemlikikan][0] == gameId
-                kepemilikan[idxKepemlikikan][1] == userId
+                kepemilikan = hp.tambahArray(kepemilikan, [[gameId, userId]])
+    return gameToko, kepemilikan, user
 
 
 
@@ -154,7 +149,7 @@ def listGame (userId, gameToko, kepemilikan):
         print("Daftar game :")
         for i in range (1,n):
             if (kepemilikan[i][1] == userId):
-                barisGame, avail = hp.findGame(kepemilikan[i][0], gameToko)
+                barisGame, _ = hp.findGame(kepemilikan[i][0], gameToko)
                 kolom1 = hp.perapih(kepemilikan, i, 0)
                 kolom2 = hp.perapih(gameToko, barisGame, 1)
                 kolom3 = hp.perapih(gameToko, barisGame, 2)
