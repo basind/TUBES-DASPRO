@@ -19,8 +19,14 @@ from b03_tictactoe import *
 from helper import *
 from load import *
 
+# load data
+data_game = loadGame()
+data_user = loadUser()
+data_kepemilikan = loadKepemilikan()
+data_riwayat = loadRiwayat()
+
 # Data temp
-data_game_temp, data_user_temp, data_kepemilikan_temp, data_riwayat_temp = [], [], [], []
+# data_game_temp, data_user_temp, data_kepemilikan_temp, data_riwayat_temp = [], [], [], []
 
 # List command admin
 list_cmd_admin = ['login', 'register', 'tambah_game', 'ubah_game', 'ubah_stok', 'list_game_toko', 'search_game_at_store', 'topup', 'help', 'save', 'exit', 'chiper', 'kerangajaib', 'tictactoe']
@@ -43,10 +49,7 @@ current_user_role = ''
 
 while(True):
     # Fetch data dari database
-    data_game = loadGame()
-    data_user = loadUser()
-    data_kepemilikan = loadKepemilikan()
-    data_riwayat = loadRiwayat()
+
     print('Ketik help untuk melihat list command.')
     if current_user_username != '':
         cmd = input(f'({current_user_username}) >>> ')
@@ -61,27 +64,27 @@ while(True):
                 current_user_username = user[2]
                 current_user_role = user[0]
         elif cmd == 'register':
-            data_user_temp = registrasi(data_user)
+            data_user = registrasi(data_user)
         elif cmd == 'tambah_game':
-            data_game_temp = tambahGame(data_game)
+            data_game = tambahGame(data_game)
         elif cmd == 'ubah_game':
-            data_game_temp = ubahGame(data_game)
+            data_game = ubahGame(data_game)
         elif cmd == 'ubah_stok':
-            ubahStok(data_game)
+            data_game = ubahStok(data_game)
         elif cmd == 'list_game_toko':
             listGameToko(data_game)
         elif cmd == 'search_game_at_store':
             cariGameToko(data_game)
         elif cmd == 'topup':
-            data_user_temp = topUp(data_user)
+            data_user = topUp(data_user)
         elif cmd == 'help':
             help(current_user_role)
         elif cmd == 'save':
-            data = olahFinalData([data_game_temp, data_user_temp, data_kepemilikan_temp, data_riwayat_temp], [data_game, data_user, data_kepemilikan, data_riwayat])
+            data = [data_game, data_user, data_kepemilikan, data_riwayat]
             data_legend = ['game.csv', 'user.csv', 'kepemilikan.csv', 'riwayat.csv']
             save(data, data_legend)
         elif cmd == 'exit':
-            data = olahFinalData([data_game_temp, data_user_temp, data_kepemilikan_temp, data_riwayat_temp], [data_game, data_user, data_kepemilikan, data_riwayat])
+            data = [data_game, data_user, data_kepemilikan, data_riwayat]
             data_legend = ['game.csv', 'user.csv', 'kepemilikan.csv', 'riwayat.csv']
             keluar(data, data_legend)
             break
@@ -122,11 +125,11 @@ while(True):
         elif cmd == 'help':
             help(current_user_role)
         elif cmd == 'save':
-            data = olahFinalData([data_game_temp, data_user_temp, data_kepemilikan_temp, data_riwayat_temp], [data_game, data_user, data_kepemilikan, data_riwayat])
+            data = [data_game, data_user, data_kepemilikan, data_riwayat]
             data_legend = ['game.csv', 'user.csv', 'kepemilikan.csv', 'riwayat.csv']
             save(data, data_legend)
         elif cmd == 'exit':
-            data = olahFinalData([data_game_temp, data_user_temp, data_kepemilikan_temp, data_riwayat_temp], [data_game, data_user, data_kepemilikan, data_riwayat])
+            data = [data_game, data_user, data_kepemilikan, data_riwayat]
             data_legend = ['game.csv', 'user.csv', 'kepemilikan.csv', 'riwayat.csv']
             keluar(data, data_legend)
             break

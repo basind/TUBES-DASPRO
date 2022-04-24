@@ -1,13 +1,16 @@
 from helper import *
 
 def cariGameDimiliki(user_id, data_game, data_kepemilikan):
-    # Spesifikasi
-    # Mendapatkan informasi game sesuai dengan query yang diminta oleh pengguna pada
-    # inventory.
-    # Belum komplit (-) auth.
+    # Mendapatkan list game yang dimiliki user sesuai dengan parameter yang diinput oleh user.
+    # Paramaeter berupa ID game dan tahun rilis game.
+    # Setiap paramaeter tidak wajib diisi
+    # Role akses: User
 
     # KAMUS LOKAL
-    #
+    # game_id, tahun : string 
+    # game_data, renew_data_game, daftar_game : array of array of string
+    # current_user_game_id, item : array of string
+    # counter, panjang_maks_kolom : integer
 
     # ALGORITMA
     print('Masukkan ID Game: ', end='')
@@ -66,11 +69,15 @@ def cariGameDimiliki(user_id, data_game, data_kepemilikan):
     print()   
 
 def cariGameToko(game_data):
-    # Spesifikasi
-    # ...
+    # Melakukan pencarian game pada toko.
+    # Menggunakan 5 parameter pencarian, yaitu ID game, nama game, harga, kategori, dan tahun rilis.
+    # Setiap paramter tidak wajib diisi.
+    # Role akses: Admin dan User
 
     # KAMUS LOKAL
-    # ...
+    # game_id, game_nama, game_harga, game_kategori, game_tahun : string
+    # daftar_game, daftar_game_temp: array of array of string
+    # panjang_maks_kolom : integer
 
     # ALGORITMA
     # input data
@@ -151,14 +158,16 @@ def cariGameToko(game_data):
     print()
 
 def topUp(data_user):
-    # Spesifikasi
-    # ...
+    # Menambahkan atau mengurangi saldo kepada User sesuai dengan username yang diinput
+    # Mengurangi saldo dilakukan dengan menambahkan tanda '-' pada nominal saldo
+    # Role akses: Admin
 
     # KAMUS LOKAL
-    # ...
+    # username, saldo : string
+    # is_valid : boolean
+    # current_user_index, i, saldo : integer
 
     # ALGORITMA
-
     # input
     print('Masukkan username: ', end='')
     username = input()
@@ -203,14 +212,15 @@ def topUp(data_user):
 
 
 def lihatRiwayat(user_id, riwayat_data):
-    # Spesifikasi
-    # ...
+    # Melihat riwayat pembelian game user yang bersangkutan
+    # Role akses: User
 
     # KAMUS LOKAL
-    # ...
+    # user_riwayat : array of array of string
+    # item : array of string
+    # i, panjang_maks_kolom : integer
 
     # ALGORITMA
-
     # copy riwayat_data
     data_riwayat = copyList2D(riwayat_data)
 

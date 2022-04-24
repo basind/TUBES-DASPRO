@@ -27,9 +27,6 @@ def panjang (obj):
         n += 1
     return n
 
-
-# nilai "6" yang ada di inisiasi game itu berasal dari file percobaan yang kubuat.
-# bisa diubah lagi.
 def loadGame():
     return potongDataCSV('game.csv')
 
