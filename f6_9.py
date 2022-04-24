@@ -156,5 +156,5 @@ def listGame (userId, gameToko, kepemilikan):
                 kolom3 = hp.perapih(gameToko, barisGame, 2)
                 kolom4 = hp.perapih(gameToko, barisGame, 3) 
                 kolom5 = hp.formatSaldoOutput(hp.perapih(gameToko, barisGame, 4))   
-                print(f"{i+1}. {kolom1}  |  {kolom2}  |  {kolom3}  |  {kolom4}   |   {kolom5}")
+                print(f"{i+1}. {kolom1}  |  {kolom2}  |  {kolom3}  |  Rp{kolom4}   |   {kolom5}")
         print()

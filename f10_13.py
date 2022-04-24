@@ -3,8 +3,8 @@ from helper import *
 def cariGameDimiliki(user_id, data_game, data_kepemilikan):
     # Mendapatkan list game yang dimiliki user sesuai dengan parameter yang diinput oleh user.
     # Paramaeter berupa ID game dan tahun rilis game.
-    # Setiap paramaeter tidak wajib diisi
-    # Role akses: User
+    # Setiap paramaeter tidak wajib diisi.
+    # Role akses: User.
 
     # KAMUS LOKAL
     # game_id, tahun : string 
@@ -70,7 +70,7 @@ def cariGameToko(game_data):
     # Melakukan pencarian game pada toko.
     # Menggunakan 5 parameter pencarian, yaitu ID game, nama game, harga, kategori, dan tahun rilis.
     # Setiap paramter tidak wajib diisi.
-    # Role akses: Admin dan User
+    # Role akses: Admin dan User.
 
     # KAMUS LOKAL
     # game_id, game_nama, game_harga, game_kategori, game_tahun : string
@@ -156,9 +156,9 @@ def cariGameToko(game_data):
     print()
 
 def topUp(data_user):
-    # Menambahkan atau mengurangi saldo kepada User sesuai dengan username yang diinput
-    # Mengurangi saldo dilakukan dengan menambahkan tanda '-' pada nominal saldo
-    # Role akses: Admin
+    # Menambahkan atau mengurangi saldo pada User sesuai dengan username yang diinput.
+    # Mengurangi saldo dilakukan dengan menambahkan tanda '-' pada nominal saldo.
+    # Role akses: Admin.
 
     # KAMUS LOKAL
     # username, saldo : string
@@ -210,8 +210,8 @@ def topUp(data_user):
 
 
 def lihatRiwayat(user_id, riwayat_data):
-    # Melihat riwayat pembelian game user yang bersangkutan
-    # Role akses: User
+    # Melihat riwayat pembelian game user yang bersangkutan.
+    # Role akses: User.
 
     # KAMUS LOKAL
     # user_riwayat : array of array of string
@@ -235,7 +235,7 @@ def lihatRiwayat(user_id, riwayat_data):
     if panjang(user_riwayat) == 1:
         print('Maaf, kamu tidak ada riwayat pembelian game. Ketik perintah "beli_game" untuk membeli.')
     else:
-        print('Daftar Game: ')
+        print('Daftar riwayat pembelian: ')
         panjang_maks_kolom = panjangMaksKolomTabel(user_riwayat)
         for item in user_riwayat:
             if(item[0] == 'ID'):

@@ -9,8 +9,8 @@ def panjang(item):
     # Helper panjang untuk mengecek panjang suatu item (list, string, dsb)
 
     # KAMUS LOKAL
-    # counter: integer
-    # j: iterator
+    # counter : integer
+    # _ : iterator
 
     # ALGORITMA
     counter = 0
@@ -19,19 +19,24 @@ def panjang(item):
     return counter
 
 
-def tambahArray(arr1, item):
-    # Spesifikasi
+def tambahArray(arr1, arr2):
+    # Melakukan merge arr1 dengan item. Item di merge di bagian belakang arr1
 
     # KAMUS LOKAL
 
     # ALGORITMA
-    return arr1 + item
+    return arr1 + arr2
 
 
 def potongDataCSV(nama_file):
-    # Spesifikasi
+    # Melakukan parse data CSV menjadi sebuah array of array of string
 
     # KAMUS LOKAL
+    # type _, item : iterator
+    # arr, temp : array of string
+    # arrofarr : array of array of string
+    # delimiter, s : string
+    # i : integer
 
     # ALGORITMA
     for _ in os.listdir(args.nama_folder):
@@ -58,11 +63,11 @@ def potongDataCSV(nama_file):
 
 
 def panjangMaksKolomTabel(data):
-    # Spesifikasi
-    # ...
+    # Menentukan panjang maksimum dari suatu kolom tabel data
 
     # KAMUS LOKAL
-    # ...
+    # panjang_maksimum_kolom: array of integer
+    # i, maks_temp, j: integer
 
     # ALGORITMA
     panjang_maksimum_kolom = []
@@ -77,6 +82,14 @@ def panjangMaksKolomTabel(data):
 
 
 def overwrite(nama_file, matriks):
+    # Melakukan penulisan matriks ke suatu nama_file 
+    
+    # KAMUS LOKAL
+    # i, j: integer
+    # line: string
+    # data: SEQFile
+
+    # ALGORITMA
     with open(nama_file, 'w+') as data:
         for i in range(panjang(matriks)):
             line = ""
@@ -90,11 +103,14 @@ def overwrite(nama_file, matriks):
 
 
 def validasiSaldo(saldo):
-    # Spesifikasi
-    # ...
+    # Melakukan validasi pada suatu saldo atau harga
 
     # KAMUS LOKAL
-    # ...
+    # temp: string
+    # count: integer
+    # meet_titik: boolean
+    # item: iterator
+
 
     # ALGORITMA
     if panjang(saldo) == 0:
@@ -131,11 +147,11 @@ def validasiSaldo(saldo):
 
 
 def formatSaldoInput(saldo):
-    # Spesifikasi
-    # ...
+    # Menghilangkan karakter '.' jika terdapat pada saldo.
 
     # KAMUS LOKAL
-    # ...
+    # temp: string
+    # item: iterator
 
     # ALGORITMA
     temp = ''
@@ -148,11 +164,12 @@ def formatSaldoInput(saldo):
 
 
 def formatSaldoOutput(saldo_init):
-    # Spesifikasi
-    # ...
+    # Memformat saldo_init menjadi bentuk rupiah. Contoh: 100.000, 10.000, 1.0000
 
     # KAMUS LOKAL
-    # ...
+    # saldo: string
+    # item: character
+    # i, count, panjang_saldo: integer
 
     # ALGORITMA
     saldo = ''
@@ -178,11 +195,11 @@ def formatSaldoOutput(saldo_init):
 
 
 def findGame (gameId, gamDb):
-    # Spesifikasi
-    # Pengecek baris ke berapa dan ketersediaan stok game
+    # Pengecek baris keberapa dan ketersediaan stok game
 
     # KAMUS LOKAL
-    # ...
+    # barisGame, i: integer
+    # isAvail: boolean
 
     # ALGORITMA
     barisGame = 0
@@ -196,6 +213,12 @@ def findGame (gameId, gamDb):
 
 
 def sortKey (masukan):
+    # Pemisah keyword saat melakukan list game
+
+    # KAMUS LOKAL
+    # key, skema: string 
+    # elm: character
+
     key = ""
     skema = ""
 
@@ -209,6 +232,13 @@ def sortKey (masukan):
     
 
 def bubbleSortMatriks (matriks, kolomKey, skema):
+    # Sorting dengan algoritma Bubble Sort pada matriks, bersesuaian dengan skema.
+    # Jika skema '+', sorting ascending
+    # Jika skema '-', sorting descending
+
+    # KAMUS LOKAL
+    # i, j, nMatriks: integer
+
     nMatriks = panjang(matriks)
 
     if (skema == "+"):
@@ -241,6 +271,9 @@ def copyList2D(List):
     # Melakukan copy List-2D menjadi list baru
 
     # KAMUS LOKAL
+    # new_list: array of array of string
+    # temp_list, oitem: array of string
+    # item: string
 
     # ALGORITMA
     new_list = []
@@ -255,6 +288,8 @@ def copyList1D(List):
     # Melakukan copy List-1D menjadi list baru
 
     # KAMUS LOKAL
+    # new_list: array of string
+    # item: string
 
     # ALGORITMA
     new_list = []
@@ -264,6 +299,12 @@ def copyList1D(List):
 
 
 def maks (db, kolom):
+    # Menemukan nilai maksimum dari suatu kolom tabel
+
+    # KAMUS LOKAL
+    # i, n: integer
+
+    # ALGORITMA
     n = 0
     for i in range(panjang(db)):
         if (panjang(db[i][kolom]) > n):
@@ -271,10 +312,22 @@ def maks (db, kolom):
     return n
 
 def spasi (db, maks, baris, kolom):
+    # Menghasilkan trailing whitespace untuk keperluan formating 
+
+    # KAMUS LOKAL
+    # keluaran: string
+
+    # ALGORITMA
     keluaran = " " * (maks - panjang(db[baris][kolom]))
     return keluaran
 
 def perapih(db, baris, kolom):
+    # Melakukan formating pada kolom tabel db dengan menambahkan whitespace dari fungsi spasi
+
+    # KAMUS LOKAL
+    # keluaran: string
+
+    # ALGORITMA
     keluaran = str(db[baris][kolom]) + spasi(db, maks(db, kolom), baris,  kolom)
     return keluaran
 
@@ -287,15 +340,3 @@ def isEmpty(data):
     if panjang(data) == 0:
         return True
     return False
-
-def olahFinalData(data_temp, data):
-    # Mengolah data final sebelum di save
-
-    # KAMUS LOKAL
-    # indx: integer
-
-    # ALGORITMA
-    for indx in range(panjang(data_temp)):
-        if panjang(data_temp[indx]) == 0:
-            data_temp[indx] = data[indx]
-    return data_temp
