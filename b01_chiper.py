@@ -129,8 +129,8 @@ def chiperUI():
                 sys.stdout.flush()
             print('\nProses enkripsi berakhir.')
             time.sleep(1)
-            print(f'Hasil enkripsi {initial_data}')
-            print(f'-> {chiperEncript(initial_data, key)}\n')
+            print(f'Hasil enkripsi {initial_data} (tanda petik terluar bukan hasil enkripsi)')
+            print(f'-> "{chiperEncript(initial_data, key)}"\n')
     elif choice == 'dekripsi':
         initial_data = input('Masukkan data yang ingin didekripsi: ')
         key = input('Masukkan kunci dekripsi: ')
@@ -145,7 +145,7 @@ def chiperUI():
                 sys.stdout.flush()
             print('\nProses dekripsi berakhir.')
             time.sleep(1)
-            print(f'Hasil dekripsi {initial_data}')
-            print(f'-> {chiperDecript(initial_data, key)}\n')
+            print(f'Hasil dekripsi {initial_data} (tanda petik terluar bukan hasil dekripsi)')
+            print(f'-> "{chiperDecript(initial_data, key)}"\n')
     else:
         print("\n!!Tidak ada data yang dimasukkan!!\n")

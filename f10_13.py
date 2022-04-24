@@ -27,13 +27,11 @@ def cariGameDimiliki(user_id, data_game, data_kepemilikan):
                 current_user_game_id, [data_kepemilikan[i][0]])
 
     # fetch game yang dimiliki current_user
-    counter = 0
     renew_data_game = []
-    for i in current_user_game_id and range(panjang(current_user_game_id)):
-        for j in range(1,panjang(game_data)):
-            if current_user_game_id[counter] == game_data[j][0]:
+    for i in range(1, panjang(game_data)):
+        for j in range(panjang(current_user_game_id)):
+            if current_user_game_id[j] == game_data[i][0]:
                 renew_data_game = tambahArray(renew_data_game, [game_data[i]])
-                counter += 1
                 break
 
     # filter hasil pencarian
@@ -186,7 +184,7 @@ def topUp(data_user):
             break
 
     if not is_valid:
-        print(f'Username "{username}" tidak ditemukan.')
+        print(f'\n!!Username "{username}" tidak ditemukan!!\n')
     else:
         # validasi saldo
         if validasiSaldo(saldo):
@@ -196,17 +194,17 @@ def topUp(data_user):
             if saldo >= 0:
                 data_user[current_user_index][5] += saldo
                 print(
-                    f'Top up berhasil. Saldo {username} bertambah menjadi Rp{formatSaldoOutput(data_user[current_user_index][5])}')
+                    f'Top up berhasil. Saldo {username} bertambah menjadi Rp{formatSaldoOutput(data_user[current_user_index][5])}\n')
             else:
                 if data_user[current_user_index][5] + saldo < 0:
                     print(
-                        f'Masukan tidak valid. Anda tidak dapat mengurangi saldo sebesar Rp{formatSaldoOutput(saldo)}')
+                        f'Masukan tidak valid. Anda tidak dapat mengurangi saldo sebesar Rp{formatSaldoOutput(saldo)}\n')
                 else:
                     data_user[current_user_index][5] += saldo
                     print(
-                        f'Top down berhasil. Saldo {username} berkurang menjadi Rp{formatSaldoOutput(data_user[current_user_index][5])}')
+                        f'Top down berhasil. Saldo {username} berkurang menjadi Rp{formatSaldoOutput(data_user[current_user_index][5])}\n')
         else:
-            print('Maaf, saldo yang anda masukkan tidak valid.')
+            print('\n!!Maaf, saldo yang anda masukkan tidak valid!!\n')
 
     return data_user
 

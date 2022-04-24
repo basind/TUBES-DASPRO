@@ -23,21 +23,21 @@ def ubahStok (gameToko):
             ketemu = True
 
     if (ketemu == False):
-        print("Tidak ada game dengan ID tersebut!")
+        print("\n!!Tidak ada game dengan ID tersebut!!\n")
     elif (ketemu == True):
         nama = gameToko[i][1]
         ubahStok = int(input("Masukkan jumlah: "))
         if (ubahStok < 0):
             if (int(gameToko[i][5]) >= (ubahStok * (-1))):
                 gameToko[i][5] = str(int(gameToko[i][5]) + ubahStok)
-                print(f"Stok game {nama} berhasil dikurangi. Stok sekarang: {gameToko[i][5]}")
+                print(f"Stok game {nama} berhasil dikurangi. Stok sekarang: {gameToko[i][5]}\n")
             else:
-                print(f"Stok game {nama} gagal dikurangi karena stok kurang. Stok sekarang: {gameToko[i][5]} (< {ubahStok*(-1)})")
+                print(f"Stok game {nama} gagal dikurangi karena stok kurang. Stok sekarang: {gameToko[i][5]} (< {ubahStok*(-1)})\n")
         elif (ubahStok > 0):
             gameToko[i][5] = str(int(gameToko[i][5]) + ubahStok)
-            print(f"Stok game {nama} berhasil ditambahkan. Stok sekarang: {gameToko[i][5]}")
+            print(f"Stok game {nama} berhasil ditambahkan. Stok sekarang: {gameToko[i][5]}\n")
         else:
-            print(f"Stok game {nama} tetap. Stok sekarang: {gameToko[i][5]}")
+            print(f"Stok game {nama} tetap. Stok sekarang: {gameToko[i][5]}\n")
 
     return gameToko
         
@@ -79,9 +79,7 @@ def listGameToko (gameToko):
         kolom5 = hp.perapih(tmpGameToko, i, 4)
         kolom6 = hp.perapih(tmpGameToko, i, 5)   
         print(f"{kolom1} | {kolom2} | {kolom3} | {kolom4} | Rp {kolom5} | {kolom6}")
-
-   
-  
+    print()
 
 
 def beliGame (gameToko,userId,user, kepemilikan, riwayat):
@@ -110,7 +108,7 @@ def beliGame (gameToko,userId,user, kepemilikan, riwayat):
 
 
     if isAvail == False:
-        print("Stok Game tersebut sedang habis!")
+        print("Stok Game tersebut sedang habis!\n")
     else:
         # pengecekan sudah dimiliki 
         isOwned = False
@@ -120,16 +118,17 @@ def beliGame (gameToko,userId,user, kepemilikan, riwayat):
        
         # pembelian
         if (isOwned == True):
-            print("Anda sudah memiliki Game tersebut!")
+            print("Anda sudah memiliki Game tersebut!\n")
         else:
             # pengecekan saldo
             if (int(user[barisUser][5]) < int(gameToko[barisGame][4])):
-                print("Saldo anda tidak cukup untuk membeli Game tersebut!")
+                print("Saldo anda tidak cukup untuk membeli Game tersebut!\n")
             else:
-                gameToko[barisGame][5] = f"{int(gameToko[barisGame][5]) - 1}"
+                gameToko[barisGame][5] = str(int(gameToko[barisGame][5]) - 1)
                 kepemilikan = hp.tambahArray(kepemilikan, [[gameId, userId]])
                 user[barisUser][5] = str(int(user[barisUser][5]) - int(gameToko[barisGame][4]))
                 riwayat = hp.tambahArray(riwayat, [[gameId, gameToko[barisGame][1], gameToko[barisGame][4], userId, "2022"]])
+                print(f'Game dengan ID {gameId} berhasil dibeli.\n')
     return gameToko, kepemilikan, user, riwayat
 
 
@@ -146,7 +145,7 @@ def listGame (userId, gameToko, kepemilikan):
     n = hp.panjang(kepemilikan)
 
     if (n == 0):
-        print("Maaf, kamu belum membeli game. Ketik perintah beli_game untuk beli.")
+        print("Maaf, kamu belum membeli game. Ketik perintah beli_game untuk beli.\n")
     else:
         print("Daftar game :")
         for i in range (1,n):
@@ -158,3 +157,4 @@ def listGame (userId, gameToko, kepemilikan):
                 kolom4 = hp.perapih(gameToko, barisGame, 3) 
                 kolom5 = hp.formatSaldoOutput(hp.perapih(gameToko, barisGame, 4))   
                 print(f"{i+1}. {kolom1}  |  {kolom2}  |  {kolom3}  |  {kolom4}   |   {kolom5}")
+        print()
