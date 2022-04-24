@@ -67,7 +67,7 @@ while(True):
         elif cmd == 'ubah_game':
             data_game_temp = ubahGame(data_game)
         elif cmd == 'ubah_stok':
-            ubahStok(data_game)
+            data_game_temp = ubahStok(data_game)
         elif cmd == 'list_game_toko':
             listGameToko(data_game)
         elif cmd == 'search_game_at_store':

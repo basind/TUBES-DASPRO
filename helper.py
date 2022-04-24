@@ -157,7 +157,7 @@ def formatSaldoOutput(saldo_init):
     # ALGORITMA
     saldo = ''
     for item in str(saldo_init):
-        if item == '-':
+        if (item == '-') or (item == " "):
             continue
         else:
             saldo += item

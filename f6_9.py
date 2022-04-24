@@ -1,5 +1,6 @@
 import helper as hp
 
+
 def ubahStok (gameToko):
     # ubahStok(gameToko). input berupa matriks
     # Fungsi mengubah stok game. Inputan ID GAME dan jumlah.
@@ -10,6 +11,7 @@ def ubahStok (gameToko):
     # KAMUS LOKAL
 
     # ALGORITMA
+    gameToko = gameToko
     gameId = input("Masukkan ID game: ")
 
     i = 0
@@ -39,8 +41,6 @@ def ubahStok (gameToko):
 
     return gameToko
         
-
-
  
 def listGameToko (gameToko):
     # Prosedur menampilkan list game di toko berdasarkan keyword pengguna. 
@@ -54,6 +54,8 @@ def listGameToko (gameToko):
     # KAMUS LOKAL
 
     # ALGORITMA
+    tmpGameToko = hp.copyList2D(gameToko)
+
     inputan = input("Skema sorting : ")
 
     key, skema = hp.sortKey(inputan)
@@ -63,16 +65,20 @@ def listGameToko (gameToko):
         if gameToko[0][i] == key:
             kolKey = i
     
-    tmpGameToko = hp.bubbleSortMatriks(gameToko, kolKey, skema)
 
-    for i in range(1, hp.panjang(gameToko)):
+    for i in range(1, hp.panjang(tmpGameToko)):
+        tmpGameToko[i][4] = hp.formatSaldoOutput(tmpGameToko[i][4])
+
+    tmpGameToko = hp.bubbleSortMatriks(tmpGameToko, kolKey, skema)
+
+    for i in range(1, hp.panjang(tmpGameToko)):
         kolom1 = hp.perapih(tmpGameToko, i, 0)
         kolom2 = hp.perapih(tmpGameToko, i, 1)
         kolom3 = hp.perapih(tmpGameToko, i, 2)
         kolom4 = hp.perapih(tmpGameToko, i, 3) 
-        kolom5 = hp.formatSaldoOutput(hp.perapih(gameToko, i, 4))
+        kolom5 = hp.perapih(tmpGameToko, i, 4)
         kolom6 = hp.perapih(tmpGameToko, i, 5)   
-        print(f"{kolom1} | {kolom2} | {kolom3} | {kolom4} | {kolom5} | {kolom6}")
+        print(f"{kolom1} | {kolom2} | {kolom3} | {kolom4} | Rp {kolom5} | {kolom6}")
 
    
   
