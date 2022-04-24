@@ -84,7 +84,7 @@ def listGameToko (gameToko):
   
 
 
-def beliGame (gameToko,userId,user, kepemilikan):
+def beliGame (gameToko,userId,user, kepemilikan, riwayat):
     # Prosedur beliGame akan mengurangi stok dari game yang ID nya diinput oleh user, serta
     # user memiliki saldo yang cukup dan belum memiliki game tersebut. 
     # Bila belum dimiliki, namun saldo belum cukup maka akan diberikan pesan saldo tidak cukup. 
@@ -128,7 +128,9 @@ def beliGame (gameToko,userId,user, kepemilikan):
             else:
                 gameToko[barisGame][5] = f"{int(gameToko[barisGame][5]) - 1}"
                 kepemilikan = hp.tambahArray(kepemilikan, [[gameId, userId]])
-    return gameToko, kepemilikan, user
+                user[barisUser][5] = str(int(user[barisUser][5]) - int(gameToko[barisGame][4]))
+                riwayat = hp.tambahArray(riwayat, [[gameId, gameToko[barisGame][1], gameToko[barisGame][4], userId, "2022"]])
+    return gameToko, kepemilikan, user, riwayat
 
 
 
