@@ -56,29 +56,39 @@ def listGameToko (gameToko):
     # ALGORITMA
     tmpGameToko = hp.copyList2D(gameToko)
 
-    inputan = input("Skema sorting : ")
+    inputan = input("Skema sorting : ").lower()
 
     key, skema = hp.sortKey(inputan)
 
+    valid = True
     kolKey = 0
-    for i in range(6):
-        if gameToko[0][i] == key:
-            kolKey = i
-    
+    if (key == tmpGameToko[0][3]):
+        kolKey = 3
+        tmpGameToko, valid = hp.bubbleSortMatriks(tmpGameToko, kolKey, skema)
+    elif (key == tmpGameToko[0][4]):
+        kolKey = 4
+        tmpGameToko, valid = hp.bubbleSortMatriks(tmpGameToko, kolKey, skema)
+    elif (key == ""):
+        kolKey = 0
+        tmpGameToko, valid = hp.bubbleSortMatriks(tmpGameToko, kolKey, skema)
+    else:
+        valid = False
 
-    for i in range(1, hp.panjang(tmpGameToko)):
-        tmpGameToko[i][4] = hp.formatSaldoOutput(tmpGameToko[i][4])
+    if valid:
+        # format kolom saldo
+        for i in range(1, hp.panjang(tmpGameToko)):
+            tmpGameToko[i][4] = hp.formatSaldoOutput(tmpGameToko[i][4])
 
-    tmpGameToko = hp.bubbleSortMatriks(tmpGameToko, kolKey, skema)
-
-    for i in range(1, hp.panjang(tmpGameToko)):
-        kolom1 = hp.perapih(tmpGameToko, i, 0)
-        kolom2 = hp.perapih(tmpGameToko, i, 1)
-        kolom3 = hp.perapih(tmpGameToko, i, 2)
-        kolom4 = hp.perapih(tmpGameToko, i, 3) 
-        kolom5 = hp.perapih(tmpGameToko, i, 4)
-        kolom6 = hp.perapih(tmpGameToko, i, 5)   
-        print(f"{kolom1} | {kolom2} | {kolom3} | {kolom4} | Rp {kolom5} | {kolom6}")
+        for i in range(1, hp.panjang(tmpGameToko)):
+            kolom1 = hp.perapih(tmpGameToko, i, 0)
+            kolom2 = hp.perapih(tmpGameToko, i, 1)
+            kolom3 = hp.perapih(tmpGameToko, i, 2)
+            kolom4 = hp.perapih(tmpGameToko, i, 3) 
+            kolom5 = hp.perapih(tmpGameToko, i, 4)
+            kolom6 = hp.perapih(tmpGameToko, i, 5)   
+            print(f"{kolom1} | {kolom2} | {kolom3} | {kolom4} | Rp {kolom5} | {kolom6}")
+    else:
+        print("Skema sorting tidak valid !")
     print()
 
 
@@ -156,5 +166,5 @@ def listGame (userId, gameToko, kepemilikan):
                 kolom3 = hp.perapih(gameToko, barisGame, 2)
                 kolom4 = hp.perapih(gameToko, barisGame, 3) 
                 kolom5 = hp.formatSaldoOutput(hp.perapih(gameToko, barisGame, 4))   
-                print(f"{i+1}. {kolom1}  |  {kolom2}  |  {kolom3}  |  {kolom4}   |   {kolom5}")
+                print(f"{i}. {kolom1}  |  {kolom2}  |  {kolom3}  |  {kolom4}   |   {kolom5}")
         print()

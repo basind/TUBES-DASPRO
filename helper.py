@@ -210,19 +210,37 @@ def sortKey (masukan):
 
 def bubbleSortMatriks (matriks, kolomKey, skema):
     nMatriks = panjang(matriks)
+    valid = True
 
-    if (skema == "+"):
-        for i in range(1,nMatriks - 1):
-            for j in range(1, nMatriks-i-1):
-                if (matriks[j][kolomKey] > matriks[j+1][kolomKey]):
-                    matriks[j+1], matriks[j] = matriks[j], matriks[j+1]
+    if (kolomKey == 4):
+        if (skema == "+") or (skema == ""):
+            for i in range(1,nMatriks ):
+                for j in range(1, nMatriks-i):
+                    if (int(matriks[j][kolomKey]) > int(matriks[j+1][kolomKey])):
+                        matriks[j+1], matriks[j] = matriks[j], matriks[j+1]
+        elif (skema == "-"):
+            for i in range(1,nMatriks):
+                for j in range(1, nMatriks-i):
+                    if (int(matriks[j][kolomKey]) < int(matriks[j+1][kolomKey])):
+                        matriks[j+1], matriks[j] = matriks[j], matriks[j+1]
+        else:
+            valid = False
+
     else:
-        for i in range(1,nMatriks - 1):
-            for j in range(1, nMatriks-i-1):
-                if (matriks[j][kolomKey] < matriks[j+1][kolomKey]):
-                    matriks[j+1], matriks[j] = matriks[j], matriks[j+1]
-   
-    return matriks
+        if (skema == "+") or (skema == ""):
+            for i in range(1,nMatriks ):
+                for j in range(1, nMatriks-i):
+                    if (matriks[j][kolomKey] > matriks[j+1][kolomKey]):
+                        matriks[j+1], matriks[j] = matriks[j], matriks[j+1]
+        elif (skema == "-"):
+            for i in range(1,nMatriks):
+                for j in range(1, nMatriks-i):
+                    if (matriks[j][kolomKey] < matriks[j+1][kolomKey]):
+                        matriks[j+1], matriks[j] = matriks[j], matriks[j+1]
+        else:
+            valid = False
+  
+    return matriks, valid
 
 def pisah(data):
     # Implementasi manual fungsi split 
