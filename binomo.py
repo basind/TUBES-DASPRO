@@ -47,12 +47,10 @@ while(True):
     data_user = loadUser()
     data_kepemilikan = loadKepemilikan()
     data_riwayat = loadRiwayat()
+    print('Ketik help untuk melihat list command.')
     if current_user_username != '':
-        print('Ketik help untuk melihat list command.')
         cmd = input(f'({current_user_username}) >>> ')
     else:
-        print('* Ketik login untuk login sistem.')
-        print('* Ketik exit untuk keluar dari sistem.')
         cmd = input('>>> ')
     # pilih cmd
     if current_user_role == 'Admin':
@@ -154,6 +152,8 @@ while(True):
                 current_user_id = user[1]
                 current_user_username = user[2]
                 current_user_role = user[0]           
+        elif cmd == 'help':
+            help(current_user_role)
         elif cmd == 'exit':
             print('\n=== Terima kasih telah menggunakan Binomo ===')
             break

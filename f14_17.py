@@ -35,7 +35,7 @@ def save(data, data_legend):
         time.sleep(2)
         print('.', end='')
         sys.stdout.flush()
-    print('\nFile berhasil disimpan.')
+    print('\nFile berhasil disimpan.\n')
 
 def help (role): #bisa dipanggil di setiap momen dengan kode '-help'
     if role == 'Admin':
@@ -54,7 +54,7 @@ def help (role): #bisa dipanggil di setiap momen dengan kode '-help'
         print(f'12. {"kerangajaib" :<20} -> Melakukan simulasi kerangajaib')
         print(f'13. {"tictactoe" :<20} -> Melakukan simulasi game tictactoe')
         print(f'14. {"exit" :<20} -> Keluar dari sistem')
-    else:
+    elif role == 'User':
         print(f'======================= HELP =======================')
         print(f'1.  {"login" :<20} -> Melakukan login ke dalam sistem')    
         print(f'2.  {"list_game_toko" :<20} -> Melihat list game yang dijual pada toko')    
@@ -69,6 +69,11 @@ def help (role): #bisa dipanggil di setiap momen dengan kode '-help'
         print(f'11. {"kerangajaib" :<20} -> Melakukan simulasi kerangajaib')
         print(f'12. {"tictactoe" :<20} -> Melakukan simulasi game tictactoe')
         print(f'13. {"exit" :<20} -> Keluar dari sistem')
+    else:
+        print(f'======================= HELP =======================')
+        print(f'1. {"login" :<6} -> Melakukan login ke sistem')
+        print(f'2. {"help" :<6} -> Menampilkan list command yang tersedia')
+        print(f'3. {"exit" :<6} -> Keluar dari sistem')
     print()
 
 
