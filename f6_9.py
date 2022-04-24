@@ -128,7 +128,7 @@ def beliGame (gameToko,userId,user, kepemilikan, riwayat):
             else:
                 gameToko[barisGame][5] = f"{int(gameToko[barisGame][5]) - 1}"
                 kepemilikan = hp.tambahArray(kepemilikan, [[gameId, userId]])
-                user[barisUser][5] = str(int(user[barisUser][5] - int(gameToko[barisGame][4])))
+                user[barisUser][5] = str(int(user[barisUser][5]) - int(gameToko[barisGame][4]))
                 riwayat = hp.tambahArray(riwayat, [[gameId, gameToko[barisGame][1], gameToko[barisGame][4], userId, "2022"]])
     return gameToko, kepemilikan, user, riwayat
 

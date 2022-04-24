@@ -113,7 +113,7 @@ while(True):
         elif cmd == 'list_game_toko':
             listGameToko(data_game)
         elif cmd == 'buy_game':
-            data_game, data_kepemilikan, data_user = beliGame(data_game, current_user_id, data_user, data_kepemilikan)
+            data_game, data_kepemilikan, data_user, data_riwayat = beliGame(data_game, current_user_id, data_user, data_kepemilikan, data_riwayat)
         elif cmd == 'list_game':
             listGame(current_user_id, data_game, data_kepemilikan)
         elif cmd == 'search_my_game':
