@@ -65,11 +65,11 @@ def listGameToko (gameToko):
         if gameToko[0][i] == key:
             kolKey = i
     
+    tmpGameToko,_ = hp.bubbleSortMatriks(tmpGameToko, kolKey, skema)
 
     for i in range(1, hp.panjang(tmpGameToko)):
         tmpGameToko[i][4] = hp.formatSaldoOutput(tmpGameToko[i][4])
 
-    tmpGameToko,_ = hp.bubbleSortMatriks(tmpGameToko, kolKey, skema)
 
     for i in range(1, hp.panjang(tmpGameToko)):
         kolom1 = hp.perapih(tmpGameToko, i, 0)
