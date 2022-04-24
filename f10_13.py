@@ -29,12 +29,12 @@ def cariGameDimiliki(user_id, data_game, data_kepemilikan):
     # fetch game yang dimiliki current_user
     counter = 0
     renew_data_game = []
-    for i in current_user_game_id and range(1, panjang(game_data)):
-        if counter == panjang(current_user_game_id):
-            break
-        if current_user_game_id[counter] == game_data[i][0]:
-            renew_data_game = tambahArray(renew_data_game, [game_data[i]])
-            counter += 1
+    for i in current_user_game_id and range(panjang(current_user_game_id)):
+        for j in range(1,panjang(game_data)):
+            if current_user_game_id[counter] == game_data[j][0]:
+                renew_data_game = tambahArray(renew_data_game, [game_data[i]])
+                counter += 1
+                break
 
     # filter hasil pencarian
     daftar_game = [['ID', 'Nama', 'Kategori', 'Tahun Rilis', 'Harga']]
