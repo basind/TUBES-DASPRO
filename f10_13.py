@@ -80,13 +80,13 @@ def cariGameToko(game_data):
     # ALGORITMA
     # input data
     print('Masukkan ID Game: ', end='')
-    game_id = input()
+    game_id = input().upper()
     print('Masukkan Nama Game: ', end='')
-    game_nama = input()
+    game_nama = input().upper()
     print('Masukkan Harga Game (Ex: Rp100.000 atau Rp100000): Rp', end='')
     game_harga = input()
     print('Masukkan Kategori Game: ', end='')
-    game_kategori = input()
+    game_kategori = input().upper()
     print('Masukkan Tahun Rilis Game: ', end='')
     game_tahun = input()
 
@@ -103,14 +103,14 @@ def cariGameToko(game_data):
             daftar_game = tambahArray(daftar_game, [data_game[i]])
     if game_id != '':
         for i in range(panjang(daftar_game)):
-            if daftar_game[i][0] == game_id:
+            if daftar_game[i][0] == game_id.upper():
                 daftar_game_temp = tambahArray(
                     daftar_game_temp, [daftar_game[i]])
         daftar_game = daftar_game_temp
         daftar_game_temp = []
     if game_nama != '':
         for i in range(panjang(daftar_game)):
-            if daftar_game[i][1] == game_nama:
+            if daftar_game[i][1] == game_nama.upper():
                 daftar_game_temp = tambahArray(
                     daftar_game_temp, [daftar_game[i]])
         daftar_game = daftar_game_temp
@@ -124,7 +124,7 @@ def cariGameToko(game_data):
         daftar_game_temp = []
     if game_kategori != '':
         for i in range(panjang(daftar_game)):
-            if daftar_game[i][2] == game_kategori:
+            if daftar_game[i][2] == game_kategori.upper():
                 daftar_game_temp = tambahArray(
                     daftar_game_temp, [daftar_game[i]])
         daftar_game = daftar_game_temp
