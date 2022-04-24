@@ -69,7 +69,7 @@ def listGameToko (gameToko):
     for i in range(1, hp.panjang(tmpGameToko)):
         tmpGameToko[i][4] = hp.formatSaldoOutput(tmpGameToko[i][4])
 
-    tmpGameToko = hp.bubbleSortMatriks(tmpGameToko, kolKey, skema)
+    tmpGameToko,_ = hp.bubbleSortMatriks(tmpGameToko, kolKey, skema)
 
     for i in range(1, hp.panjang(tmpGameToko)):
         kolom1 = hp.perapih(tmpGameToko, i, 0)
@@ -104,11 +104,13 @@ def beliGame (gameToko,userId,user, kepemilikan, riwayat):
     gameId = (input('Masukkan ID Game: ')).upper()
 
     # pengecekan game ada atau tidak
-    barisGame, isAvail = hp.findGame(gameId, gameToko) 
+    barisGame, isAvail, isValid = hp.findGame(gameId, gameToko) 
 
 
     if isAvail == False:
         print("Stok Game tersebut sedang habis!\n")
+    elif isValid == False:
+        print("Game dengan ID tersebut tidak ada!\n")
     else:
         # pengecekan sudah dimiliki 
         isOwned = False
@@ -150,11 +152,11 @@ def listGame (userId, gameToko, kepemilikan):
         print("Daftar game :")
         for i in range (1,n):
             if (kepemilikan[i][1] == userId):
-                barisGame, _ = hp.findGame(kepemilikan[i][0], gameToko)
+                barisGame, _, _ = hp.findGame(kepemilikan[i][0], gameToko)
                 kolom1 = hp.perapih(kepemilikan, i, 0)
                 kolom2 = hp.perapih(gameToko, barisGame, 1)
                 kolom3 = hp.perapih(gameToko, barisGame, 2)
                 kolom4 = hp.perapih(gameToko, barisGame, 3) 
                 kolom5 = hp.formatSaldoOutput(hp.perapih(gameToko, barisGame, 4))   
-                print(f"{i+1}. {kolom1}  |  {kolom2}  |  {kolom3}  |  Rp{kolom4}   |   {kolom5}")
+                print(f"{i+1}. {kolom1}  |  {kolom2}  |  {kolom3}  |  {kolom4}   |   Rp {kolom5}")
         print()

@@ -204,12 +204,17 @@ def findGame (gameId, gamDb):
     # ALGORITMA
     barisGame = 0
     isAvail = True
+    isValid = True
     for i in range(panjang(gamDb)):
         if (gamDb[i][0] == gameId): 
             barisGame = i
             if (int(gamDb[i][5]) == 0):
                 isAvail = False
-    return barisGame, isAvail
+    
+    if gamDb[barisGame][0] != gameId:
+        isValid = False
+        
+    return barisGame, isAvail, isValid
 
 
 def sortKey (masukan):
