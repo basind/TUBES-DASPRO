@@ -22,11 +22,11 @@ def save(data, data_legend):
     # make a new dir if doesn't exist
     if not isExist:
         os.mkdir(nama_folder)
-    defined_dir_path = curr_path + '\\' + nama_folder
+    defined_dir_path = curr_path + '//' + nama_folder
 
     # write data to the folder defined
     for index in range(panjang(data)):
-        temp_file_path = defined_dir_path + '\\' + data_legend[index]
+        temp_file_path = defined_dir_path + '//' + data_legend[index]
         overwrite(temp_file_path, data[index])
 
     print('Loading', end='')
